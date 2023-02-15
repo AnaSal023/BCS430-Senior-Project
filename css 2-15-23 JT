@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "bebas neue", bebas neue;        /*sans-serif;*/
+    box-sizing: border-box;
+}
+
+
+
+	.header{                      /*css properties for the header*/
+		height: 100vh;
+		width: 100%;
+		padding: 0 8%;
+		background-image: url(media/background.png);
+		background-position: center;
+		background-size: cover;
+		}
+    
+	
+
+	nav{                          /*This will move all the links to the same line as the logo but on right side of the page*/
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		}
+	 
+	
+	.logo{                           /*size of logo*/
+		width: 160px;
+		}
+         */
+		 
+	.nav ul{
+		background: #000;
+		width: 100%;
+		margin-top:10px;
+		
+	}
+	
+	.nav ul li{
+		display: inline-block;
+		list-style: none;
+		margin: 20px 30px;
+		color: #fff;
+	}
+	
+	.nav-links{
+		padding: 28px 0;
+        }
+    
+    .nav-links li{              /*Css properties for the links*/
+        display: inline-block;
+        font-size: 20px;
+        margin: 0 15px;
+        }
+             
+    .nav-links li a{                    /*How will the links look*/
+        text-decoration: none;
+        color: #8b008b; /*Purple color but looks better with fuchsia #FF00FF or darkmagenta #8b008b*/
+        padding: 5px 0;
+        position: relative;
+        }
+        
+    .nav-links li a::after{    			/*This allows the links to be underlined*/
+        content: '';
+        background: #8b008b;
+        width: 0;
+        height: 2px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: width 0.5s;
+        
+        }
+        
+    .nav-links li a:hover::after{ 		/*This allows the link to be underline when hovered over*/
+        width: 100%;
+        
+        }
+        
+        
+    .btn {
+		background: #ff3d00; /*red*/
+		color: #8b008b;
+        padding: 10px 30px;
+        border-radius: 3px;
+        cursor: pointer;
+	}
+	
+	.content{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 90%;
+        max-width: 900px;
+        transform: translate(-50%, -50%); /*this will make it on the center*/
+		text-align: center;
+		color: #8b008b;
+		
+        }
+	.content h1{
+		font-size:65px;
+		font-weight: 600;
+		margin-bottom: 40px;
+		font-family: "bebas neue", bebas neue; 
+	}
+	
+	.content form{
+		background: #fff;
+		padding: 10px;
+		border-radius: 8px;
+		display: flex;
+	}
+	
+	.content form input{
+		flex: 1;
+		border: none;
+		outline: none;
+		padding: 0 20;
+		font-size: 18px;
+		
+	}
+        
+	.content form button{					/*this is for the find item box*/
+		background: #ff3d00;
+		color: #8b008b;
+		padding: 10px 40px;
+		border: none;
+		border-radius: 6px;
+		font-size:20px;
+		
+	}	
