@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style3.css" rel ="stylesheet" type = "text/css">   
+
+</head>
+<body>
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="media/logo1.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="media/logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="">About</a></li> 
+                    <li class= "btn1"><span>Login</span></li>
+                    <li class= "btn2"><span>Sign Up</span></li>        
+                </ul>          
+        </nav>
+        
+        
+    <div class="image"> 
+    
+    <!-- Body Content-->
+        <div class="content" >
+		
+		<!-- Brand Name-->
+            <h1>Everything You Need From a Schoolmate</h1>
+	    
+	    <!-- Search Bar and Button-->
+            <form>
+	    
+	    	<!--$#x270e inputs a pencil symbol to the seach bar-->
+                <input type="text" placeholder="&#x270e; Enter keyword"> 
+                    <button type="submit">Find Item</button>
+            </form>
+        </div>
+    
+    	</div>
+	</div>
+</body>
+</html>
