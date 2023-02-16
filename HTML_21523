@@ -1,45 +1,51 @@
 <!DOCTYPE html>
-
-<html>
-    
+<html>    
 <head>
-        <title> Uni-Thirft</title>              <!--Page Tittle-->
-        <link href = "style2.css" rel ="stylesheet" type = "text/css">   <!--Connects to the css file-->
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style2.css" rel ="stylesheet" type = "text/css">   
 
 </head>
 <body>
     <div class="header">
-		
+    	
+	 <!-- Navigation Bar-->
         <nav>
-            <img src="brand2.png" class="logo"> <!-- This is our logo picture-->
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="brand2.png" class="logo"></a> 
             
-                <ul class="nav-links">
- 
-                    <li><a href="">Home</a></li>                <!--All the header tabs-->
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="">Home</a></li>                
                     <li><a href="">Products</a></li> 
-                    <li><a href="">Example</a></li> 
-                    <li><a href="">Log In</a></li> 
-                    <li class= "btn">Sign Up</li>
-                    
-                </ul>
-            
-            
+                    <li><a href="">About</a></li> 
+                    <li class= "btn1"><span>Login</span></li>
+                    <li class= "btn2"><span>Sign Up</span></li>        
+                </ul>          
         </nav>
         
         
     <div class="image"> 
+    
+    <!-- Body Content-->
         <div class="content" >
-            <h1> Uni-Thrift</h1>
+		
+		<!-- Brand Name-->
+            <h1>UNI-THRIFT</h1>
+	    
+	    <!-- Search Bar and Button-->
             <form>
-                <input type="text" placeholder="&#x270e; Enter keyword"> <!--$#x270e inputs a pencil symbol on the seach bar-->
+	    
+	    	<!--$#x270e inputs a pencil symbol to the seach bar-->
+                <input type="text" placeholder="&#x270e; Enter keyword"> 
                     <button type="submit">Find Item</button>
             </form>
         </div>
     
-    </div>
-    </div>
-
-
-
+    	</div>
+	</div>
 </body>
 </html>
