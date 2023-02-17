@@ -80,7 +80,7 @@
         
         
     .btn {
-		background: #ff3d00; /*red*/
+		background: #ff3d00; /*red*/ <--!NO RED!!!! !-->
 		color: #8b008b;
         padding: 10px 30px;
         border-radius: 3px;
