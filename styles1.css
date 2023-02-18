@@ -1,0 +1,200 @@
+.header {
+    height:100%;
+    width:100%;
+    padding:0 1px;
+    background-color: white;
+    background-position: center;
+		background-size: cover;
+}
+body {
+    text-align: center;
+    size: 40px;
+    background-color: rgb(255,255,255);
+    height: 1000px;
+    font-size: 15px;
+}
+p {
+    font-size: 1.5em;
+    cellpadding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+nav {
+display: table;
+width: 100%;
+margin-right: auto;
+float: none;
+background-color: white;
+align-items: center;
+justify-content: space-between;
+
+}
+nav ul {
+width:100%;
+margin-top:10px;
+}
+nav ul li {
+display: inline-block;
+list-style: none;
+font-family: 'Bebas Neue', sans-serif;
+margin:20px 30px;
+border: none;
+font-size: 1.5em;
+}
+.nav-links {
+    padding:3px 0;
+}
+.nav-links li a{                    
+    text-decoration: none;
+    color: RGB(127,63,152); /*Purple color but looks better with fuchsia #FF00FF or darkmagenta #8b008b*/
+    padding: 5px 0;
+    position: relative;
+    }
+
+nav ul li a {
+
+display: block;
+font-size:20px;
+margin: 0 15px;
+
+}
+/* fixes astronaut logo*/
+.logo {margin-left: -134px;
+        margin-top:10px;
+		width: 200px;
+		display: left;   
+}
+/*fixes the title*/
+.logo2 {
+    margin-left: 200px;
+    margin-top:-80px;
+    margin-bottom:0px;
+    width: 140px;
+}
+
+/*table {
+font-family: 'Bebas Neue', sans-serif;
+margin-left: auto;
+margin-right: auto;
+width: 10%;
+height: 50%;
+align: center;
+float: right;
+position: relative;
+border-radius: 10px;
+}*/
+
+input[type=submit] {
+    font-size: 1.5em;
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: DeepSkyBlue;
+    border-radius: 5px;
+    border: thin solid deepskyblue;
+    font-weight: bold;
+text-align: right;
+border-width: 1px 2em 0 4rem;
+}
+input {
+    font-size: 1.3em;
+    width:100%;
+    float: left;
+}
+
+input[type=text] {
+    width: 100%;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  input[type=text]:focus {
+    width: 50%;
+    float:left;
+  }
+
+  h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4.5em;
+      left: 125%;
+      text-align: center;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+    position: relative;
+    left: 125%;
+    text-align: right;
+}
+
+label {
+    font-family: 'Bebas Neue', sans-serif;
+    cursor: default;
+}
+input[type=checkbox] {
+    font-size: 1.5em;
+    position:relative;
+    display: inline-block;
+}
+
+.file1{
+    font-family: 'Bebas Neue', sans-serif;
+    left: 50%;
+    right: 50px;
+    position: absolute;
+    height: 40%;
+    width: 250px;  
+    justify-content: right;
+    align-items: right;
+}
+input[type=file] {
+    font-family: 'Bebas Neue', sans-serif;
+    left: 50%;
+    right: 50%;
+    height: 50%;
+    width: 250px;
+    justify-content: right;
+    align-items: right;
+}
+
+.footer{
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 20px;
+    border: 5px solid RGB(127,63,152);
+    border-radius:1.5px;
+    text-align: center;
+    padding: 1px;
+
+    background: RGB(127,63,152);    
+}
+.footer .footrow li {
+
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+
+}
+.footer .footrow li {
+
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+
+}
+.footer .footrow a {
+
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    transition:0.5s;
+
+
+}
+.footer .footrow a:hover {
+
+color:white;
+
+}
