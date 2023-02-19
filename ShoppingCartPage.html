@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style5.css" rel ="stylesheet" type = "text/css">
+		<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+
+</head>
+<body>
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="logo.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="unithrift.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="">About</a></li>  
+					<li><a href="ShoppingCartPage.html">Shopping Cart <span class="num-of-items">2</span></a></li>
+                </ul>          
+        </nav>
+	</div>
+	
+	<div class="header">
+		<h1>Your Shopping Cart</h1>
+	</div>
+	
+	<div class="cart-items">
+		<div class="cart-item">
+			<div class="item-image">
+				<img src="calc-book.png" alt="Product Image">
+			</div>
+			<div class="item-details">
+				<h3>Applied Calculus for the Managerial, Life, and Social Sciences 10th Edition</h3>
+				<p><em>Price: $40.00</em></p>
+				<button class="remove-item">Remove</button>
+			</div>
+		</div>
+  
+		<div class="cart-item">
+			<div class="item-image">
+				<img src="gloves.png" alt="Product Image">
+			</div>
+			<div class="item-details">
+				<h3>Rawlings | Select PRO LITE Youth Baseball Glove | Pro Player Models | Sizes 11.25" - 12.25"</h3>
+				<p>Price: $25.00 </p>
+				<button class="remove-item">Remove</button>
+			</div>
+		</div>
+		
+		<div class="totals">
+			<div class="items-total">
+				<label>Subtotal:</label>
+				<div class="value-of-total" id="cart-subtotal">$65.00</div>
+			</div>
+				
+			<div class="shipping-total">
+				<label>Shipping:</label>
+				<div class="shipping-value" id="cart-shipping">$5.00</div>
+			</div>
+				
+			<div class="grand-total">
+				<label>Grand Total:</label>
+				<div class="grand-value" id="cart-total">$70.00</div>
+			</div>
+		</div>
+        </body>
+
+		
+		<button class="checkout">Proceed to Checkout</button>
+	</div>
+</html>
