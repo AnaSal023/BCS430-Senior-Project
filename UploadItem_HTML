@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+
+<link href= "style1.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+    
+</head>
+
+
+<body>
+    
+<div class="header">
+   
+  <nav>
+            <a href ="homepage.html"><img src="logo.png" class="logo"></a> 
+			<a href ="homepage.html"><img src="brand.png" class="logo2"></a>
+      
+       <!--All the header tabs-->
+       <ul class="nav-links">  
+            
+           <form>	    
+	    	<!--$#x270e inputs a pencil symbol to the seach bar-->
+                <input type="text" placeholder="&#x270e; Enter keyword"> 
+                    <button type="submit">Find Item</button>
+            </form>
+           
+           
+                    <!--All the header tabs-->
+                    <li><a href="">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="">About</a></li> 
+             
+            
+                </ul>  
+    </nav>
+      
+    <div class="content">
+  <h1>Sell an Item</h1>
+    
+    
+    
+    
+    <form action="/actionpage.php"> 
+        
+        <div class="up" <a><img src="up.png" class="upload"></a></div>
+        
+    <label for="product">Product Name</label>
+    <input  type="text" id="product" name="product" value=""><br>
+    <textarea = id="description" name="description" row="30" cols="50">Enter Product Description</textarea>    
+    <br>
+    <label for="product">Price</label>
+    <input  type="text" id="price" name="price" value=""><br>
+    <input type="checkbox" id="donate" name="donate" value="">
+    <label class="don">Donate</label>
+     <button type="submit">Submit Form</button>
+    
+    
+    
+    </form>
+      
+        </div>
+    
+        <footer>
+
+
+            <div class="footer">
+         
+             <div class="footrow">
+                 
+                 <ul>    
+                 <li><a href="">Home</a></li>                
+                 <li><a href="">Products</a></li> 
+                 <li><a href="">About Us</a></li> 
+                 <li><a href="">Contact Us</a></li> 
+                 </ul>
+         
+               </div>
+         
+         
+         
+              </div>
+         
+             </footer>
+    </div>
+   </body>
+</html>
