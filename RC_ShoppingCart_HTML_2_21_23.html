@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style6.css" rel ="stylesheet" type = "text/css">
+		<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+
+</head>
+<body>
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="logo.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="unithrift.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="">About</a></li>  
+					<li><a href="ShoppingCartPage.html">Shopping Cart <span class="num-of-items">2</span></a></li>
+                </ul>          
+        </nav>
+	</div>
+	
+	<div class="header">
+		<h1>Your Shopping Cart</h1>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Image</th>
+				<th>Product</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td><img src="calc-book.png" width="100" height="100" alt="Item 1" /></td>
+				<td>Applied Calculus for the Managerial, Life, and Social Sciences 10th Edition</td>
+				<td>$40.00</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td><img src="gloves.png" width="100" height="100" alt="Item 2" /></td>
+				<td>Rawlings | Select PRO LITE Youth Baseball Glove | Pro Player Models | Sizes 11.25" - 12.25"</td>
+				<td>$25.00</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="checkout">
+		<table>
+			<tr>
+				<td class="items-total">Subtotal</td>
+				<td>$65.00</td>
+			</tr>
+			<tr>
+				<td class="shipping-total">Shipping Total</td>
+				<td>$5.00</td>
+			</tr>
+			<tr>
+				<td class="grand-total">Grand Total</td>
+				<td>$70.00</td>
+			</tr>
+		</table>
+		<button class="checkout-button">Proceed to Checkout</button>
+	</div>
+	</body>
+</html>
