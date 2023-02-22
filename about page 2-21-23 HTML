@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "about.css" rel ="stylesheet" type = "text/css">   
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="media/logo1.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="media/logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="test1.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="about.html">About</a></li> 
+                    <li class= "btn1"><span>Login</span></li>
+                    <li class= "btn2"><span>Sign Up</span></li>        
+                </ul>          
+        </nav>
+        
+<h1> About Uni-Thrift </h1>
+
+<h3>Our Problem </h3>
+
+<p>In our current predicament, college students are unable to afford school-related commodities. 
+An ongoing global pandemic and a war have created a limited supply of resources. This limited supply
+ of resources has caused a price hike in goods that has rendered some students unable to afford their
+ college supplies. Our organization’s goal is to help alleviate college students' financial burden 
+ and allow them to have the opportunity to make some extra cash. Our organization will implement a 
+ web-based solution that provides a student-to-student marketplace to exchange college supplies at 
+ competitive rates.</p>
+
+<h3>Problem Description</h3>
+
+<p>College students today are within a special bracket of society. Students are constantly trying to 
+maintain a balance between working and studying. Because of this balance, students are more likely to
+ make astute purchases. Covid-19 and the war in Ukraine have exacerbated students' finances. The global
+ market trajectory is an economic slowdown. Due to the market downturn, inflation has been steadily rising.
+ With the rising cost of living, students are currently trying to survive on an already tight budget.</p>
+
+<h3>Project Description</h3>
+	
+<p>College students are an integral part of society. They are our future leaders and innovators. College 
+students are at the precipice of adulthood. Each student is trying to maintain a balance between studying 
+and working. College students are, unfortunately, the least paid bracket in society. Students have to plan 
+their budgets wisely to pay their bills. However, students are facing a growing dilemma concerning Covid-19 
+and the war in Ukraine. These traumatic events have shaken the global market. With an ongoing supply chain 
+shortage and rising demand, inflation has skyrocketed. With the rising costs of goods, college students are 
+financially insecure with their small, fixed income. </p>
+
+<h3> Our Goals </h3>
+<p>Our goal for the project is to provide students with a simple and hassle-free website. The user interface 
+will have a modern design and a color palette that's easy on the eyes. Once entering the website, students 
+will provide their personal information to set up an account. The student account will go through a thorough 
+verification process. The organization plans to ensure that all our users are enrolled students. Once that 
+process is complete, the information is securely transmitted to the database. The security and integrity of 
+our users' data also play a big part in our mission. Once a student has a verified account, they are then able 
+to either buy, donate, or sell items off the website. If a student wants to sell their items, they will go 
+through a process of filling out a generated application form. This form will ask general questions about the 
+commodity they are trying to sell. If a student wants to donate items, they are going to have to go through the 
+application form and click on ‘Donate’. When that happens, everything will be whited out except for item name and 
+description. Once that student has sold several items, the buyer will receive the option to review their seller. 
+In addition, if a college student were going to buy an item, they would be able to navigate through our curated 
+list of selling products. Each product will have a picture of the product, a short description, and its current 
+condition. To ensure students are making wise choices, the website will have a strict review system that will 
+accurately detail who the seller is and what experiences the buyers had with them. Once the student has finished 
+shopping, their items will be generated in an itemized shopping cart, which will proceed to a checkout page. 
+The checkout page will ask students to make payments through numerous payment options. Students can choose to 
+either have their items delivered or meet up with the seller inside the college campus. After checking out, 
+students will receive a confirmation email detailing their purchases. Therefore, compared to our competitors, 
+our organization will offer a modern website that will be sleek and easy to navigate when purchasing school items 
+at a cheap rate while also allowing students to have an extra outlet of cash outside of their current job.</p>
+
+
+
+ <footer class="footer">
+
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Products</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+    </ul>
+    <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+  </footer>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
