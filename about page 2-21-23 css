@@ -1,0 +1,296 @@
+ /*CSS properties taken for whole homepage*/
+
+html {
+    background-color: deepskyblue;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Bebas Neue', sans-serif;        
+    box-sizing: border-box;
+	
+}
+
+
+
+    /*CSS properties for the header*/
+    .header{                     
+		height: 100%;
+		width: 100%;
+		padding: 0 1px;
+		background-color: white;
+		background-position: center;
+		background-size: cover;
+		}
+
+
+	  /*CSS properties for Navigation Bar */
+    nav{             
+		
+        padding: 1px;
+        margin: -1px;
+        display: flex;     
+		align-items: center;
+		justify-content: space-between;
+        -webkit-user-select:none;
+        -ms-user-select:none;			/*Gabriel can you explain what this is*/
+        -user-select:none;
+    
+		}
+	 
+	 /*Adjustment for logo*/
+	/*  I removed this to see if the logo I entered works
+	.logo{    
+        
+        margin-left: 10px;
+        margin-top:10px;
+		width: 140px;
+        
+		}
+		*/  
+		
+	.logo{     /*size of logo*/
+
+        margin-left: 10px;
+        margin-top:5px;
+		margin-bottom:5px;
+		width: 140px;
+
+		}
+	.logo2{   	  /*size of logo2*/
+        margin-left: -420px;
+        margin-top:10px;
+		width: 200px;
+		display: left; 
+
+		}
+	 
+    /*Adjustments for Navigation items*/
+	.nav ul{
+		background: #000;
+		width: 100%;
+		margin-top:10px;
+		
+	}
+	
+    /*Adjustments for individual Navigation items */
+	.nav ul li{
+		display: inline-block;
+		list-style: none;
+		margin: 20px 30px;
+		color: #fff;
+	}
+	
+    /*Adjustment for the entirety of the Navigation Items*/
+	.nav-links{
+		padding: 3px 0;
+       
+        }
+    
+    /*Css properties for the links*/
+    .nav-links li{              
+        display: inline-block;
+        font-size: 20px;
+        margin: 0 15px;
+		/*border: 2px solid #00bfff;
+		border-radius: 8px;
+		padding: 5px;*/
+        }
+             
+    /*How will the links look*/
+    .nav-links li a{                    
+        text-decoration: none;
+        color: RGB(127,63,152); /*Purple color but looks better with fuchsia #FF00FF or darkmagenta #8b008b*/
+        padding: 5px 0;
+        position: relative;
+        }
+        
+    /*This allows the links to be underlined*/
+    .nav-links li a::after{    			
+        content: '';
+        background: #8b008b;
+        width: 0;
+        height: 2px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: width 0.5s;
+        
+        }
+    
+    /*This allows the link to be underline when hovered over*/
+    .nav-links li a:hover::after{ 		
+        width: 100%;
+        
+        }
+        
+     /* login In button*/ 
+    .btn1 {                               
+		/*background: #1ca9c9; /*red*/
+		/*color: black;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 8px;*/
+		color: RGB(127,63,152);
+        cursor: pointer;
+        box-shadow:0 0px #999;
+		border: 2px solid #00bfff;
+		border-radius: 8px;
+		padding: 5px;
+	}
+
+    .btn1:hover {                               
+        background-color: #00bfff;
+    }
+
+    /*creates a little animation for login In button*/ 
+    .btn1:active{                                  
+    background-color: #00bfff;
+    box-shadow: 0 0px #666;
+    transform: translateY(2px);
+}
+
+    /*sign in button*/ 
+    .btn2 {                                     
+		/*background: #ff3d00; /*red*/
+		/*color: black;
+        padding: 10px 30px;
+        border-radius: 4px;
+        cursor: pointer;
+	    box-shadow:0 0px #999;*/
+		color: RGB(127,63,152);
+        cursor: pointer;
+        box-shadow:0 0px #999;
+		border: 2px solid #00bfff;
+		border-radius: 8px;
+		padding: 5px;
+	}
+
+    .btn2:hover {
+        background-color: #00bfff;
+    }
+
+    /*creates a little animation for sign In button*/
+    .btn2:active{                               
+        /*background-color: #ff3d00;*/
+        box-shadow: 0 0px #666;
+        transform: translateY(2px);
+}
+    /*Middle of page*/
+	.content{ 
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        max-width: 1000px;
+        transform: translate(-50%, -50%); /*this will make it on the center*/
+		text-align: center;
+		color: RGB(127,63,152);
+		
+        }
+	.content h1{
+		font-size:40px;
+		font-weight: 600;
+		margin-bottom: 40px;
+		font-family: 'Bebas Neue', sans-serif; 
+		
+	}
+	
+/*end of header*/
+
+
+h1{
+	color: RGB(127,63,152);
+	text-align: center;
+	text-decoration: underline;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	font-family: 'Bebas Neue', sans-serif;
+	
+}
+
+h3{
+	color: black;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	font-family: 'Bebas Neue', sans-serif;
+	
+
+}
+p{
+	color:RGB(127,63,152);
+	text-align: center;
+	padding-top: 10px;
+	padding-right: 30px;
+	padding-left: 80px;
+	padding-bottom: 30px;
+	font-family: 'Bebas Neue', sans-serif;
+}
+
+
+
+
+
+/*Footer*/
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: RGB(127,63,152); /*RGB(127,63,152); #00bfff;*/
+  min-height: 100px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.social-icon,
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 7px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+  list-style: none;
+}
+
+.social-icon__link {
+  font-size: 2rem;
+  color: #fff; 
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.social-icon__link:hover {
+  transform: translateY(-10px);
+}
+
+.menu__link {
+  font-size: 1.3rem;
+  color: #fff; /*RGB(127,63,152);*/
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.menu__link:hover {
+  opacity: 1;
+}
+
+.footer p {
+  color: #fff;
+  margin: 5px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
