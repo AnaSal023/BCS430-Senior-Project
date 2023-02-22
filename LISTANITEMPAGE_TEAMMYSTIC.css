@@ -1,0 +1,302 @@
+.header {
+    height:100%;
+    width:100%;
+    padding: 0 1px;
+    background-color: white;
+    background-position: center;
+    background-size: cover;
+}
+body {
+    text-align: center;
+    size: 40px;
+    background-color: rgb(255,255,255);
+    height: 1000px;
+    font-size: 15px;
+}
+
+/*p {
+    font-size: 1.5em;
+    cellpadding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}*/
+
+.header{                     
+    height: 100%;
+    width: 100%;
+    padding: 0 1px;
+    background-color:white;
+    background-position: center;
+    background-size: cover;
+    }
+
+nav {
+display: table;
+width:100%;
+margin-right:auto;
+align-items: center;
+float:none;
+justify-content: space-between;
+font-weight: bold;
+
+}
+/* astro logo*/
+.logo {
+    margin-left:25px;
+    margin-top:-15px;
+    width:200px;
+    display:left;
+}
+/* logo title*/ 
+.logo2 {
+    margin-right: 200px;
+    margin-top:25px;
+    margin-bottom:0px;
+    width: 200px;
+    display: left; 
+}
+
+input[type=search] {
+    width: 140px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  input[type=search]:focus {
+    width: 50%;
+  }
+/* text box positions*/ 
+.nav-links input[type=text]
+{
+    float: center; 
+    width: 300px;
+    text-decoration: none;
+    margin-right: 00px;
+}
+
+.nav ul{
+    display:table;
+    width: 100%;
+    margin-top:250px;
+    float:right;
+}
+.nav ul li{
+    display:inline-block;
+    list-style-type: none;
+    color: #fff;
+}
+
+nav ul li a {
+
+    display: block;
+    font-size:20px;
+    margin: 0 15px;
+}
+/* header links, home, products, example, sign up*/
+.nav-links{
+    font-size: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    display: inline-block;
+   padding: 20px 0;
+   }
+
+   .nav-links li{  
+
+    display: inline-block;
+    font-size: 20px;
+    margin:20 100px;
+margin: left 500px;
+    }
+
+    .nav-links li a{    
+       text-decoration: none;
+       color: RGB(127,63,152); 
+       padding: 5px 0;
+       position: relative;
+       }
+
+       .nav-links li a::after{    			
+        content: '';
+        background: RGB(127,63,152);
+        width: 0;
+        height: 2px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: width 0.5s;
+
+        }
+
+    /*This allows the link to be underline when hovered over*/
+    .nav-links li a:hover::after{ 		
+        width: 100%;
+        }
+
+    /* CONTROLS THE BODY*/
+            .content{
+                padding: 120px;
+                }
+                /* CONTROLS THE HEADER 'SELL AN ITEM'*/ 
+                h1 {
+               font-family: 'Bebas Neue', sans-serif;
+font-size: 70pt;
+margin-top: -200px;
+text-align: center;
+border:2px solid RGB(127,63,152);
+background-color: RGB(127,63,152);
+
+                }
+                /* CONTROLS THE LABELS TEXTBOXES*/
+                textarea{  
+                    font-family: 'Bebas Neue', sans-serif;
+                    padding-top: 10px;
+                    width: 500px;
+                    height: 200px;
+                    margin-top: 20px;
+                    margin-left:500px;
+                    border:2px solid deepskyblue;
+                    border-radius: 20px;
+                    font-size: 20px;
+                    resize: none;   
+                }
+                
+                #name{
+                    font-family: 'Bebas Neue', sans-serif;
+                width: 500px;
+                border:2px solid deepskyblue;
+                border-radius: 10px; 
+                margin-left: 1000px;
+                }
+                
+                #description {
+width: 500px;
+margin-left: 1000px;
+                }
+                
+                #pr{
+                    font-family: 'Bebas Neue', sans-serif;
+                width: 500px;
+                border:2px solid deepskyblue;
+                border-style: round solid;
+                border-radius: 20px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-left: 1000px;
+                resize: none; 
+                }
+                #donate {
+                    margin-right: 20px;
+                }
+                input[type=file]{
+                    font-family: 'Bebas Neue', sans-serif;
+                width: 500px;
+                margin-left: -1500px;
+                margin-top: -1800px;
+                margin-bottom: -1500px;
+                }
+                /* CONTROLS ALL LABELS: PRODUCT NAME, DESCRIPTION, ETC*/ 
+                label {
+                    font-family: 'Bebas Neue', sans-serif;
+                    cursor: default;
+                    font-size:20pt;
+                    font-weight: bold;
+                    margin-left: 600px;
+vertical-align: text-top;
+                }
+               /* CONTROLS THE CHECKBOX*/ 
+                input[type=checkbox] {
+                    font-size: 1.8em;
+                    position:relative;
+                    display: inline-block;
+                
+                }
+img {
+    float: left;
+    margin-left: -1px;
+width:50%;
+height: 50%;
+padding-top: 17px;
+}
+/*
+table {
+font-family: 'Bebas Neue', sans-serif;
+margin-left: auto;
+margin-right: auto;
+width: 10%;
+height: 50%;
+align: center;
+float: right;
+position: relative;
+border-radius: 10px;
+
+}
+.center {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+th {
+    font-size: 3em;
+}
+td {
+    font-size: 1.5em;
+    font-weight: bold;
+}*/
+
+/* CONTROLS THE SUBMIT BUTTON*/ 
+button[type=submit] {
+    font-size: 1.8em;
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: white;
+    border-radius: 50px;
+    border: 2px solid deepskyblue;
+    font-weight: bold;
+}
+input {
+    font-size: 1.4em;
+}
+/* ALL THESE CONTROL THE FOOTER */ 
+.footer{
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 20px;
+    border: 5px solid RGB(127,63,152);
+    border-radius:1.5px;
+    text-align: center;
+    padding: 1px;
+    background: RGB(127,63,152);    
+}
+.footer .footrow li {
+
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+
+}
+.footer .footrow li {
+
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+
+}
+.footer .footrow a {
+
+    font-size: 12pt;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    transition:0.5s;
+}
+.footer .footrow a:hover {
+
+color:white;
+
+}
