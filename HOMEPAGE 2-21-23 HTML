@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style3.css" rel ="stylesheet" type = "text/css">   
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="media/logo1.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="media/logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="test1.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="about.html">About</a></li> 
+                    <li class= "btn1"><span>Login</span></li>
+                    <li class= "btn2"><span>Sign Up</span></li>        
+                </ul>          
+        </nav>
+        
+        
+    <div class="image"> 
+    
+    <!-- Body Content-->
+        <div class="content" >
+		
+		<!-- Brand Name-->
+            <h1>Everything You Need From a Schoolmate</h1>
+	    
+	    <!-- Search Bar and Button-->
+            <form>
+	    
+	    	<!--$#x270e inputs a pencil symbol to the seach bar-->
+                <input type="text" placeholder="&#x270e; Enter keyword"> 
+                    <button type="submit">Find Item</button>
+            </form>
+        </div>
+    
+    	</div>
+	</div>
+
+
+ <footer class="footer">
+
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+	  
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Products</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+    </ul>
+    <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+  </footer>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
