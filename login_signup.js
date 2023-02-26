@@ -61,7 +61,7 @@ const firebaseConfig = {
       }
 
     //autherization
-    createUserWithEmailAndPassword(auth, email, password).then(function() {
+    auth.createUserWithEmailAndPassword(email, password).then(function() {
         //declare user variable
         var user = auth.currentUser
 
