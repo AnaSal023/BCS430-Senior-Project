@@ -86,21 +86,12 @@ const firebaseConfig = {
         var error_code = error.code
         var error_message = error.message
         alert(error_message)
+	    console.log("error")
     })
 
   }
 
-  function validate(form)
-      {
-        fail = validateFirst(form.first.value)
-        fail += validateLast(form.last.value)
-        fail += validatePassword(form.password.value)
-        fail += validateEmail(form.email.value)
-		fail += validateCPassword(form.cpass.value, form.password.value)
-      
-        if (fail == "")     return true
-        else { alert(fail); return false }
-      }
+ 
       function validateFirst(field)
       {
         if (field == "") alert("No first name was entered.\n")
