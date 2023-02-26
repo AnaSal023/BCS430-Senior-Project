@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style3.css" rel ="stylesheet" type = "text/css">   
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fontawesome.com/v6/docs/web/setup/get-started">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+	
+
+	
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="media/logo1.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="media/logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="test1.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="about.html">About</a></li> 
+					<li><a href="demographics.html">My Account</a></li>
+					<li><ion-icon name="cart-outline"></ion-icon></li>
+					
+                            
+                </ul>          
+        </nav>
+	</div>
+		
+<div class="container">		
+	<div class="topbox">
+		<nav>
+			<a onclick="tabs(0)" class="tab active">
+				<ion-icon name="person-circle-outline"></ion-icon>
+			</a>
+			<a onclick="tabs(1)" class="tab"> 
+				<ion-icon name="card-outline"></ion-icon>
+			</a>
+			
+			
+			<!--<a href="">Personal Information</a>
+							<a href="">Orders</a>
+							<a href="">Signout</a>-->
+		</nav>
+
+	</div>
+	
+	<!--Information on the bottom side of the screen(body) for profile-->
+	<div class="lowerbox">
+	
+		<!--For the profile informaiton-->
+		<div class="profile tabShow">
+			<h1> Personal Info </h1>
+            <h2> ID</h2>
+			<input id ="enterID" type="text">
+			<h2> Full Name </h2>
+			<input id ="enterName" type="text"> <!--value="Jorge Torres"-->
+			<h2> Birthday/Age for now </h2>
+			<input id="enterBirthday" type="text" > 
+			<h2> Gender </h2>
+			<input id="enterGender" type="age" >
+			<h2> Email </h2>
+			<input id="enterEmail" type="text" >
+			<!--<h2> Password </h2>
+			<input id="password" type="password" value="brightcode">-->
+			<button id ="insert"> Insert </button>
+			<button id ="update"> Update </button>
+		
+		
+		</div>
+			
+			<!--For the payment information-->
+			<div class="payment tabShow">
+			<h1> Payment Info </h1>
+			<h2> Name on Credit Card </h2>
+			<input type="Text" class="input" value="Jorge M Torres ">
+			<h2> Credit Card Number </h2>
+			<input type="Text" class="input" value="0123 **** **** 4567 ">
+			<h2> Expiration Date </h2>
+			<input type="Text" class="input" value="01/02/2025">
+			<h2> CVV Number</h2>
+			<input type="Text" class="input" value="123">
+			<h2> Billing Address </h2>
+			<input type="text" class="input" value="123 4th Ave Bay Shore NY">
+			<button id ="btn"> Update </button>
+		
+		
+		</div>
+
+	  <!--this was to practice pulling data-->
+	  <!--
+	  <div id ="findDetails">
+		<h1>Find my info</h1>
+		<h4>ID</h4>
+		<input id="findID" type="text"><br><br>
+		<button id ="find">FIND</button>
+		
+		<input id="findName" type="text"><br><br>
+        <input id="findBirthday" type="age"><br><br>
+        <input id="findGender" type="text"><br><br>
+        <input id="findEmail" type="text"><br><br>-->
+
+		<!--<h3 id="password" type="text"></h3><br>-->
+		<!--</div>-->
+	  
+</div>	  
+
+
+
+    <!--This top section is copied and pasted from our firebase page. -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+          authDomain: "uni-thrift.firebaseapp.com",
+          databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+          projectId: "uni-thrift",
+          storageBucket: "uni-thrift.appspot.com",
+          messagingSenderId: "562171645836",
+          appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      
+      
+        
+        //this is needed to pull the data
+    
+        import {getDatabase, ref, get, set, child, update, remove}
+            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"; //The link aboved is copied here but the word app is replaced with database
+    
+            
+    
+            const db = getDatabase();
+    
+            var enterID = document.querySelector("#enterID");
+            var enterName = document.querySelector("#enterName");
+            var enterBirthday = document.querySelector("#enterBirthday");
+            var enterGgender = document.querySelector("#enterGender");
+            var enterEmail = document.querySelector("#enterEmail");
+    
+    
+            var findID = document.querySelector("#findID");
+            var findName = document.querySelector("#findName");
+            var findBirthday = document.querySelector("#findBirthday");
+            var findGender = document.querySelector("#findGender");
+            var findEmail = document.querySelector("#findEmail");
+    
+          
+    
+            var insertBtn = document.querySelector("#insert");
+            var updateBtn = document.querySelector("#update");
+            var findBtn = document.querySelector("#find");
+    
+            function InsertData() {
+                set(ref(db, "People2/"+ enterID.value),{
+                    Name: enterName.value,
+                    ID: enterID.value,
+                    Birthday: enterBirthday.value,
+                    Gender: enterGender.value,
+                    Email: enterEmail.value
+                })
+                .then(()=>{
+                    alert("Data added successfully");
+                })
+                .catch((error)=>{
+                    alert(error);
+                });
+            }
+    
+
+
+            //Below function is to pull data, we might need it to maybe do the log in page?
+            /*function FindData() {
+                const dbref = ref(db);
+    
+                get(child(dbref, "People2/" + findID.value))
+                .then((snapshot)=>{
+                    if(snapshot.exists()){
+                        findName.innerHTML = "Name: " + snapshot.val().Name;
+                        findBirthday.innerHTML = "Birthday: " + snapshot.val().Birthday;
+                        findGender.innerHTML = "Gender: " + snapshot.val().Gender;
+                        findEmail.innerHTML = "Email: " + snapshot.val().Email;
+    
+                    } else {
+                        alert("No data found");
+                    }
+                })
+                .catch((error)=>{
+                    alert(error)
+                })
+                
+            }*/
+    
+            function UpdateData(){
+                update(ref(db, "People2/"+ enterID.value),{
+                    Name: enterName.value,
+                    Birthday: enterBirthday.value,
+                    Gender: enterGender.value,
+                    Email: enterEmail.value
+    
+                })
+                .then(()=>{
+                    alert("Data updated successfully");
+                })
+                .catch((error)=>{
+                    alert(error);
+                });
+            }
+    
+            //This function will not work for us since we are not removing anything
+            /*function RemoveData(){
+                remove(ref(db, "People2/"+ enterID.value))
+                .then(()=>{
+                    alert("Data deleted successfully");
+                })
+                .catch((error)=>{
+                    alert(error);
+                });
+            }*/
+    
+            insertBtn.addEventListener('click', InsertData);
+            updateBtn.addEventListener('click', UpdateData);
+            findBtn.addEventListener('click', FindData);
+        
+        
+        
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <footer class="footer">
+
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+	  
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Products</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+    </ul>
+    <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+  </footer>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  <!--function below will make it where only information pertaining to each tab shows such as demographic icon will show name, address, etc but will not show payment information-->
+  <script>
+	const tabBtn = document.querySelectorAll(".tab");
+	const tab = document.querySelectorAll(".tabShow");
+	
+	function tabs(panelIndex){
+		tab.forEach(function(node){
+			node.style.display = "none";
+			
+		});
+		tab[panelIndex].style.display = "block";
+	}
+	tabs(0);
+  </script>
+  
+  
+  
+  
+  
+  <!--This is for the database-->
+  
+  
+
+
+  
+  
+  
+  
+</body>
+</html>
