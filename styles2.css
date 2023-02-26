@@ -1,22 +1,23 @@
 
-    body {
-        text-align: center;
-        size: 40px;
-        background-color: rgb(127,63,152);
-        height: 1000px;
-        font-size: 15px;
-    }
-    p {
-        font-size: 1.5em;
-        cellpadding: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 10%;
-    }
-    
+body {
+    text-align: center;
+    size: 40px;
+    background-color: deepskyblue;
+    height: 1000px;
+    font-size: 15px;
+}
+p {
+    font-size: 1.5em;
+    cellpadding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
   /*CSS properties for Navigation Bar */
-nav {    
-    border-radius: 30px;
+nav {   
+    border-radius: 30px; 
     height: 100px;         
     background-color:white;
     padding: 1px;
@@ -27,8 +28,8 @@ nav {
     -webkit-user-select:none;
     -ms-user-select:none;			/*Gabriel can you explain what this is*/
     -user-select:none;
-    font-family: 'Bebas Neue', sans-serif; 
-    font-weight: bold;  
+    font-family: 'Bebas Neue', sans-serif;   
+    font-weight: bold;    
 }
  
 
@@ -44,7 +45,7 @@ nav {
     margin-left: -420px;
     margin-top:10px;
     width: 200px;
-    display: left; 
+    float: left;
 
 }
  
@@ -53,7 +54,7 @@ nav {
     background: #000;
     width: 100%;
     margin-top:10px;
-    font-family:'Bebas Neue', sans-serif;   
+    font-family:'Bebas Neue', sans-serif; 
 }
 
 /*Adjustments for individual Navigation items */
@@ -125,7 +126,6 @@ nav {
     border-radius: 8px;
     padding: 5px;
     font-family:'Bebas Neue', sans-serif;   
-    font-weight: bold;
 }
 
 .btn1:hover {                               
@@ -207,7 +207,7 @@ h1 {
     font-family:'Bebas Neue', sans-serif;   
 }
     /*this is the button for searching items */
-button {					
+.content form button {					
     /*background: #ff3d00;*/
     color: rgb(127,63,152);
     padding: 10px 40px;
@@ -217,48 +217,53 @@ button {
     font-family:'Bebas Neue', sans-serif;   
 }
 
-    img {
-        float: left;
-        position:relative;
-        margin-left: auto;
-    margin-right: auto;
-    width:50%;
-    height: 70%;
-    }
 
-    table {
-    font-family: 'Bebas Neue', sans-serif;
+.center {
+    padding: 10px 30px 50px;
+    border: 2px solid;
+    cellpadding: 2;
+    cellspacing: 5;
+    background-color: white;
+    font: normal 14px helvetica;	
     margin-left: auto;
     margin-right: auto;
-    height: 70%;
-    align: center;
-    float: right;
-    position: relative;
+    width: 80%;
+    height: 65%;
+    border: 1px solid white;
+    border-radius: 8px;
+    font-family: 'Bebas Neue', sans-serif;
     
-    }
-    .center {
-        background-color: white;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-        border: 1px solid white;
-        
-    }
-    th {
-        font-size: 3em;
-    }
-    td {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-    .button {
-        font-size: 0.8em;
-        font-family: 'Bebas Neue', sans-serif;
-        background-color: DeepSkyBlue;
-        border-radius: 10px;
-        border: thin solid deepskyblue;
-        font-weight: bold;
-    }
-    input {
-        font-size: 1em;
-    }
+}   
+fieldcontain{
+   font-size: 4em; 
+}
+label {
+    font-size: 1em;
+}
+img {
+width:40%;
+height: 40%;
+align: center;
+padding-top: 17px;
+}
+.button {
+    font-size: 1.5em;
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: rgb(127,63,152);
+    font-weight: bold;
+    border-radius: 10px;
+    border: thin solid rgb(127,63,152);
+}
+label {
+    font-size: 1.5em;
+    font-weight: bold;
+    align: left;
+}
+p {
+    font-size: 4em;
+    font-weight: bold;
+    padding: 5px 5px 5px 5px;
+}
+input {
+    font-size: 1.5em;
+}
