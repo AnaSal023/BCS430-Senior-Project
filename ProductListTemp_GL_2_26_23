@@ -1,0 +1,115 @@
+<html>    
+<head> </head>
+
+<body>
+
+	<div>
+        <table>
+        <thead>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Username</th>
+            
+        </thead>
+        <tbody id="tbody1">
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+    </tbody>
+</table>
+
+
+    </div>
+    
+
+  
+    <script type="module">
+
+           var num=0;
+
+           var tbody=document.getElementById('tbody1');
+
+            function AddItemToTable(item,price,username) {
+                let trow=document.createElement("tr");
+                let td1=document.createElement("td");
+                let td2=document.createElement("td");
+                let td3=document.createElement("td");
+                let td4=document.createElement("td");
+
+                td1.innerHTML=++num;
+                td2.innerHTML=item;
+                td3.innerHTML=price;
+                td4.innerHTML=username;
+
+                trow.appendChild(td1);
+                trow.appendChild(td2);
+                trow.appendChild(td3);
+                trow.appendChild(td4);
+
+                tbody.appendChild(trow);
+
+            }
+
+            function AddAllItemsToTable(TheProduct){
+                nums=0;
+                tbody.innerHTML="";
+                TheProduct.forEach(element => {
+                    AddAllItemsToTable(element.Item, element.Price,element.Username)
+                    
+                });
+            }
+           
+        import {initializeApp} from "firebase/app";
+        import{getDatabase,ref,child,onValue,get} from "firebase/database";
+       
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+          authDomain: "uni-thrift.firebaseapp.com",
+          databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+          projectId: "uni-thrift",
+          storageBucket: "uni-thrift.appspot.com",
+          messagingSenderId: "562171645836",
+          appId: "1:562171645836:web:ded9a93970d0631ab4d0a9"
+        };
+
+         // Initialize Firebase
+         const app = initializeApp(firebaseConfig);
+         const db = getDatabase();
+
+                function  GetAllDataOnce() {
+
+                    const dbRef = ref(db);
+
+                    get(child(dbRef,"Product/"))
+                    .then((snapshot)=>{
+                        var products = [];
+                       snapshot.forEach(childSnapshot => {
+                        products.push(childSnapshot.val());
+                            
+                        });
+                            AddAllItemsToTable(products);
+                    });
+                }
+               
+                function  GetAllDataRealtime() {
+
+            const dbRef = ref(db,"Product");
+
+        onValue(dbRef,(snapshot) => {
+                        var products = [];
+                        snapshot.forEach(childSnapshot => {
+                        products.push(childSnapshot.val());
+                            
+                        });
+                            AddAllItemsToTable(products);
+                    })
+                }
+
+            window.onload = GetAllDataRealtime;
+      </script>
+</body>
+</html>
