@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <link rel="stylesheet" href="styles1.css">
+  <link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+</head>
+<!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="index.html"><img  src="logo1.png" class="logo"></a> 
+			<a href ="index.htmll"><img  src="logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="index.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="">About</a></li> 
+                    <li class= "btn1"><a href="login.html"><span>Login</span></a></li>
+                    <li class= "btn2"><a href="signup.html"><span>Sign Up</span></a></li>         
+                </ul>          
+        </nav>
+  <!-- javascripts -->
+ 
+  <script src="login_signup.js"></script> 
+  <!--<script src='https://github.com/AnaSal023/BCS430-Senior-Project/blob/4ba2c9ec338e2ab149146aca225b64cc3605c9dd/login_signup.js'></script>-->
+  <script src='https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js'></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
+
+<br><img src="sign.jpg" alt="signup">
+<!-- registration form is print in the form of a table --> 
+			<table class="center">
+
+			  <th colspan="2" align="center">Welcome to Uni-Thrift</th>
+			
+			  <form action="" id="signup" ><!-- validate(this) checks the input data with javascript functions -->
+				
+        <tr><td>First Name</td><div data-role='fieldcontain'>
+				  <td><input type="text" maxlength="16" id="firstname" >
+				<tr><td>Last Name</td><div data-role='fieldcontain'>
+				  <td><input type="text" maxlength="16" id="lastname" >
+          <tr><td>Email</td>
+				<td><input type="text" maxlength="64" if="email" >
+				</td></tr>
+				<td><tr></tr></td>
+				<tr><td>Password</td>
+				  <td><input type="password" maxlength="12" id="password" >
+				</td><td><div data-role='fieldcontain'></tr>
+				<tr><td>Confirm Password</td>
+				  <td><input type="password" maxlength="12" id="cpass" >
+				</td></tr><tr><td colspan="2" align="center"><button id="signUp" class="button">
+				   Create Account </button></td></tr>
+          
+			  </form>
+		</table><br><br><br><br><br>
+
+  </body>
+</html>
