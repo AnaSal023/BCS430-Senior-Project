@@ -13,10 +13,10 @@
         </thead>
         <tbody id="tbody1">
             <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>test</td>
+                <td>2</td>
+                <td>2</td>
+                <td>tester</td>
             </tr>
     </tbody>
 </table>
@@ -54,30 +54,36 @@
             }
 
             function AddAllItemsToTable(TheProduct){
-                nums=0;
+                
                 tbody.innerHTML="";
                 TheProduct.forEach(element => {
-                    AddAllItemsToTable(element.Item, element.Price,element.Username)
+                    AddItemToTable(element.Item, element.Price,element.Username);
                     
                 });
             }
            
-        import {initializeApp} from "firebase/app";
-        import{getDatabase,ref,child,onValue,get} from "firebase/database";
-       
-        
-        const firebaseConfig = {
-          apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
-          authDomain: "uni-thrift.firebaseapp.com",
-          databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
-          projectId: "uni-thrift",
-          storageBucket: "uni-thrift.appspot.com",
-          messagingSenderId: "562171645836",
-          appId: "1:562171645836:web:ded9a93970d0631ab4d0a9"
-        };
+         // Import the functions you need from the SDKs you need
+     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+     // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-         // Initialize Firebase
-         const app = initializeApp(firebaseConfig);
+     // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+    authDomain: "uni-thrift.firebaseapp.com",
+    databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+    projectId: "uni-thrift",
+    storageBucket: "uni-thrift.appspot.com",
+    messagingSenderId: "562171645836",
+    appId: "1:562171645836:web:ded9a93970d0631ab4d0a9"
+    };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+         import{getDatabase,ref,child,onValue,get} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+         import { getAuth } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
          const db = getDatabase();
 
                 function  GetAllDataOnce() {
@@ -91,13 +97,13 @@
                         products.push(childSnapshot.val());
                             
                         });
-                            AddAllItemsToTable(products);
-                    });
+                        AddAllItemsToTable(products);
+                    })
                 }
                
-                function  GetAllDataRealtime() {
+           /*     function  GetAllDataRealtime() {
 
-            const dbRef = ref(db,"Product");
+            const dbRef = ref(db,"Product/");
 
         onValue(dbRef,(snapshot) => {
                         var products = [];
@@ -107,9 +113,9 @@
                         });
                             AddAllItemsToTable(products);
                     })
-                }
+                }*/
 
-            window.onload = GetAllDataRealtime;
+            window.onload = GetAllDataOnce;
       </script>
 </body>
 </html>
