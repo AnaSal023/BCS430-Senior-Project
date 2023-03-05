@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+	<link rel="stylesheet" href="checkoutStyles.css">
+	<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+	</head>
+	<title>Check Out</title>
+	<!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="indexLogin.html"><img  src="logo1.png" class="logo"></a> 
+			<a href ="indexLogin.html"><img  src="logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="indexLogin.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="about.html">About</a></li> 
+                    <li class= "btn1"><a href="logout.html"><span>Logout</span></a></li>         
+                </ul>          
+        </nav>
+	<body>
+        <!-- checkout form -->
+        <br><div class='checkoutForm' display='block'>
+            <label></label>
+            <div>
+            <img src="logo.png" class="logo3"></h1>
+            </div>
+            <div data-role='fieldcontain'>
+              <label></label>
+              <p>Please enter your payment and shipping information</p>
+            </div><br>
+            <div data-role='fieldcontain'>
+                <label>Name on Card</label><br><br>
+                <input type='text' maxlength='64'>
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Card Number</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Card Expiration Date</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>CVC</label><br><br>
+                <input type='text' maxlength='4' >
+              </div><br><br><br>
+              <div data-role='fieldcontain'>
+                <h1>Shipping Address</h1>
+              </div>
+              <div data-role='fieldcontain'>
+                <label>Name</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Street Address</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>City</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>State</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Postal / Zip Code</label><br><br>
+                <input type='text' maxlength='10' >
+              </div><br><br><br>
+            <div data-role='fieldcontain'>
+              <label></label>
+              <button id="signout" class="button">&ensp;Check Out&ensp;</button>
+            </div>
+        </div><br><br>
+    <!-- javascript -->
+    <script type="module">import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, connectAuthEmulator } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js';
+        import { getDatabase, set, get, update, remove, ref} from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+            authDomain: "uni-thrift.firebaseapp.com",
+            databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+            projectId: "uni-thrift",
+            storageBucket: "uni-thrift.appspot.com",
+            messagingSenderId: "562171645836",
+            appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+        };
+        //initialize firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+        const auth = getAuth(firebaseApp);
+        const checkAuth = async() => {
+            onAuthStateChanged(auth, user => {
+            if(user){
+
+            }
+            else {
+                window.location.href="login.html";
+            }
+            })
+        }
+      </script> 
+      <footer class="footer">
+
+        <ul class="social-icon">
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
+        </ul>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="indexLogin.html">Home</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Products</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+    
+        </ul>
+        <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+      </footer>
+     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
+    </html>
