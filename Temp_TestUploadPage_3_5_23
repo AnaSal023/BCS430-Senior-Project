@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html>
+    <link rel="stylesheet" href="testcss.css">
+<head>
+
+</head>
+
+<body>
+
+   <label>Product Name</label> <input type="text" id="nameinp"> <br><br>
+   <label>Product price</label> <input type="text" id="priceinp"><br><br>
+   <label>Stock</label> <input type="text" id="stockinp"><br><br>
+   <label>Category</label> 
+   <select id="catinp">
+    <option value="keyboard & mouse">Keyboard and mouse</option>
+    <option value="laptops">Laptop</option>
+    <option value="Monitors">Monitors</option>
+    <option value="Graphics Card">Graphic Card</option>
+    <option value="Power Supply">Power Supply</option>
+   </select>
+
+   <label>Point #1</label> <input type="text"  id="p1inp" class="pointers"><br><br>
+   <label>Point #2</label> <input type="text"  id="p2inp" class="pointers"><br><br>
+   <label>Point #3</label> <input type="text"  id="p3inp" class="pointers"><br><br>
+   <label>Point #4</label> <input type="text"  id="p4inp" class="pointers"><br><br>
+
+   <label>Product Description</label> <textarea id="desarea"></textarea><br><br>
+
+   <div id="imagesDiv"></div>
+
+   <div id="controldiv">
+<label id='loadlab'></label>
+<button id="addprodbtn">Add Product</button>
+<button id="selimgsbtn">Select Images</button>
+   </div>
+
+
+   <script type="module">
+
+    var Files=[];
+    var FileReaders=[];
+    var ImageLinksArray=[];
+
+    const imgdiv =document.getElementById('imagesDiv');
+    const selBtn =document.getElementById('selimgsbtn');
+    const addBtn =document.getElementById('addprodbtn');
+    const proglab =document.getElementById('loadlab');
+
+    const name =document.getElementById('nameinp');
+    const category =document.getElementById('catinp');
+    const description =document.getElementById('desarea');
+    const price =document.getElementById('priceinp');
+    const stock =document.getElementById('stockinp');
+
+    const p1 =document.getElementById('p1inp');
+    const p2 =document.getElementById('p2inp');
+    const p3 =document.getElementById('p3inp');
+    const p4 =document.getElementById('p4inp');
+
+function OpenFileDialog(){
+let inp=document.createElement('input');
+inp.type='file';
+inp.multiple='mutiple';
+
+inp.onchange =(e)=>{
+    AssignImgsToFilesArray(e.target.files);
+    CreateImgTags();
+    }
+    inp.click();
+}
+
+function  AssignImgsToFilesArray(thefiles){
+    let num=Files.length + thefiles.length;
+    let looplim = (num <=10) ? thefiles.length : (10-Files.length) 
+
+    for(let i=0; i<looplim; i++){
+Files.push(thefiles[i]);
+
+    }
+    if (num>10) alert("max of 10 images are allowed");
+}
+    function CreateImgTags(){
+    imgdiv.innerHTML='';
+   
+        for (let i =0; i < Files.length;i++){
+            FileReaders[i]=new FileReader();
+
+            FileReaders[i].onload=function(){
+
+                var img=document.createElement('img');
+                img.id='imgNo'+i;
+                img.classList.add('imgs');
+                img.src=FileReaders[i].result;
+                imgdiv.append(img);
+            }
+            FileReaders[i].readAsDataURL(Files[i]);
+        }
+       
+    }
+    function getShortTitle(){
+    let namey =name.value.substring(0,50);
+    return namey.replace(/[^a-zA-Z0-9]/g,"");
+    }
+
+function GetImgUploadProgress(){
+    return 'Images Uploaded' + ImageLinksArray.length + ' of ' + Files.length
+}
+
+function IsAllImagesUploaded(){
+    return ImageLinksArray.length==Files.length;
+
+}
+function GetPoints(){
+    let points = [];
+    if(p1.value.length>0) points.push(p1.value);
+    if(p2.value.length>0) points.push(p2.value);
+    if(p3.value.length>0) points.push(p3.value);
+    if(p4.value.length>0) points.push(p4.value);
+    return points;
+  
+}
+function RestoreBack(){
+    selBtn.disabled=false;
+    addBtn.disabled=false;
+}
+
+// events
+     selBtn.addEventListener('click',OpenFileDialog);
+     addBtn.addEventListener('click',UploadAllImages);
+
+//upload 
+function UploadAllImages(){
+    selBtn.disabled=true;
+    addBtn.disabled=true;
+
+    ImageLinksArray=[];
+
+    for (let i=0;i<Files.length; i++){
+        UploadAnImage(Files[i],i);
+    }
+}
+
+
+
+function UploadAnImage(imgToUpload,imgNo){
+const metadata={
+    contentType:imgToUpload.type
+};
+ const storage = getStorage();
+ const ImageAddress="TheImages/" + getShortTitle() + "/img#" +(imgNo+1);
+ const storageRef = sRef(storage,ImageAddress);
+ const UploadTask=uploadBytesResumable(storageRef,imgToUpload,metadata);
+ UploadTask.on('state_changed',(snapshot)=>{
+
+     proglab.innerHTML=GetImgUploadProgress();
+
+ },
+
+(error)=>{
+ alert("error:image upload failed");
+
+
+},
+()=>{
+    getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+        ImageLinksArray.push(downloadURL);
+        if(IsAllImagesUploaded()){
+            proglab.innerHTML="all images uplaoded";
+            UploadAProduct();
+        }
+         });
+    }
+ );
+}
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+authDomain: "uni-thrift.firebaseapp.com",
+databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+projectId: "uni-thrift",
+storageBucket: "uni-thrift.appspot.com",
+messagingSenderId: "562171645836",
+appId: "1:562171645836:web:ded9a93970d0631ab4d0a9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+    import{getDatabase,ref,child,onValue,get,set} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+    import {getStorage, ref as sRef, uploadBytesResumable, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+  
+    const realdb=getDatabase();
+
+    function UploadAProduct(){
+        set(ref(realdb,"TheProductRealdb/" + getShortTitle()),{
+            ProductTitle:name.value,
+            Category:category.value,
+            Description:description.value,
+            Price:price.value,
+            Stock:stock.value,
+            Points:GetPoints(),
+            LinksOfImagesArray: ImageLinksArray
+
+        });
+        alert ("Upload Is Sucessful");
+        RestoreBack();
+    }
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
