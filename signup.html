@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <link rel="stylesheet" href="styles1.css">
+  <link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+</head>
+<!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+    <style>
+      .firebase-emulator-warning { display: none; }
+      </style>
+            <a href ="index.html"><img  src="logo1.png" class="logo"></a> 
+			<a href ="index.htmll"><img  src="logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="index.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="">About</a></li> 
+                    <li class= "btn1"><a href="login.html"><span>Login</span></a></li>
+                    <li class= "btn2"><a href="signup.html"><span>Sign Up</span></a></li>         
+                </ul>          
+        </nav>
+<title>Sign Up</title>
+<br><img src="sign.jpg" alt="signup">
+<!-- registration form is print in the form of a table --> 
+			<table class="center" >
+			  <th colspan="2" align="center">Welcome to Uni-Thrift</th>
+			 <!--checks the input data with javascript functions -->
+				<div id="form">
+        <tr><td>First Name</td><div data-role='fieldcontain'>
+				  <td><input type="text" maxlength="16" id="firstname" placeholder="Please enter you first name" >
+				<tr><td>Last Name</td><div data-role='fieldcontain'>
+				  <td><input type="text" maxlength="16" id="lastname" placeholder="Please enter you last name">
+          <tr><td>Email</td>
+				<td><input type="email" maxlength="64" id="email" placeholder="Please enter your email address">
+				</td></tr>
+				<td><tr></tr></td>
+				<tr><td>Password</td>
+				  <td><input type="password" maxlength="12" id="password" placeholder="Please enter a password">
+				</td><td><div data-role='fieldcontain'></tr>
+				<tr><td>Confirm Password</td>
+				  <td><input type="password" maxlength="12" id="cpass" placeholder="Please confirm password">
+				</td></tr><tr><td colspan="2" align="center"><button id="signUp" class="button">
+				   Create Account </button></td></tr>
+        </div>    	  
+		</table><br><br><br><br><br>
+      <!-- javascripts -->
+      <!-- scripts to hash password -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.js"></script>
+    <script type="module">
+      //imports from firebase
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
+      import { 
+        getAuth, 
+        createUserWithEmailAndPassword, 
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut,
+        setPersistence,
+        browserSessionPersistence  } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js';
+      import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js';
+      import { getDatabase, set, get, update, remove, ref} from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js';
+
+      //firabse configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+        authDomain: "uni-thrift.firebaseapp.com",
+        databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+        projectId: "uni-thrift",
+        storageBucket: "uni-thrift.appspot.com",
+        messagingSenderId: "562171645836",
+        appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+      };
+        //initialize firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+
+        //initialize variables
+        const auth = getAuth(firebaseApp);
+        const db = getDatabase();
+
+        //get unput fields
+        const firstname = document.querySelector('#firstname');
+        const lastname = document.querySelector('#lastname');
+        const email = document.querySelector('#email');
+        const password = document.querySelector('#password');
+        const cpass = document.querySelector('#cpass');
+        const form = document.querySelector('#form');
+        const fullName = firstname.value + " " + lastname.value;
+        //hash password
+        const hashPassword = CryptoJS.SHA256(password);
+        //get sign up button
+        const signUp = document.querySelector("#signUp");
+        //gets value from const
+        const signUpEmail = email.value;
+        const signUpPassword = password.value;
+        //sings user up
+        const userSignUp = async() => {
+          
+          //validate fields
+          validateFunction(loginEmail, loginPassword);
+          
+          //add user to aunthentication 
+          createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            alert("Your created an account sucesfully, please log in!");
+            window.location.href="login.html";
+          })
+          //if a error occurs it will display in the browser console
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode + "/n" + errorMessage)
+          })
+        }
+        //when button is click it runs the user signup function
+        signUp.addEventListener('click', userSignUp);
+          
+        //validate input fields
+        var validateFunction = function()
+          {
+            var fail = validateFirst(firstname);
+            fail += validateLast(lastname);
+            fail += validatePassword(password);
+            fail += validateEmail(email);
+            fail += validateCPassword(cpass, password);
+            if (fail == "")     return true
+            else { alert(fail) }
+          }
+          //validate first name 
+          function validateFirst(field)
+          {
+            if (field == "") alert("No first name was entered.")
+            
+            return true
+          }
+          //validate last name
+          function validateLast(field)
+          {
+            if (field == "") alert("No last name was entered.")
+            
+            return true
+          }
+          //va;idate pasword (must follow requirenments)
+          function validatePassword(field)
+          {
+            
+            if (field == "") return "No Password was entered."
+            else if (field.length < 6)
+              alert("Passwords must be at least 6 characters.")
+            else if (/[A-Z]/       .test(field) &&
+                    /[a-z]/       .test(field) &&
+                    /[0-9]/       .test(field) &&
+                    /[^A-Za-z0-9]/.test(field))
+              alert("Password require one each of a-z, A-Z and 0-9.")
+            return true
+          }
+          //validate email (must have email symbols and end in edu)
+          function validateEmail(field)
+          {
+            var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if (field == "") alert("No Email was entered.")
+            else if (!field.value.match(validRegex))
+              alert("The Email address is invalid.")
+            return true
+          }
+          //validate confirm password (must be the same as password)
+          function validateCPassword(field1, field2){
+            if (field1.length == 0) alert("No Confirm Password was entered.")
+            else if (!field1 == field2) alert("Passwords are not the same.")
+            else return true
+          }
+    </script> 
+    <footer class="footer">
+
+      <ul class="social-icon">
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a></li>
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a></li>
+        <li class="social-icon__item"><a class="social-icon__link" href="#">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a></li>
+      </ul>
+      <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="index.html">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">Products</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+  
+      </ul>
+      <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+    </footer>
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
