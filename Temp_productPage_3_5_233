@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<head>
+
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<style>
+
+#productDiv{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+ .productcard{
+    border:1px gray solid ;
+    height: 500px;
+    width: 290px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+ }
+ .productcard:hover{
+    border-color: darkblue;
+ }
+
+.thumb{
+width: 220px;
+height: 140px;
+cursor: pointer;
+}
+
+.detbtns{
+    background-color: navy;
+    color: white;
+    width: 90%;
+    margin-bottom: 15px;
+}
+
+.detbtns:hover{
+
+    color: wheat;
+}
+.title{
+    color: orangered;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    text-align: center;
+
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="ProductDiv" class="container">
+
+
+</div>
+
+<script type="module">
+function getShortTitle(title){
+
+    if (title.length>49) title=title.substring(0,47);
+    else return title;
+    return title + "...";
+}
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+
+     // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+    authDomain: "uni-thrift.firebaseapp.com",
+    databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+    projectId: "uni-thrift",
+    storageBucket: "uni-thrift.appspot.com",
+    messagingSenderId: "562171645836",
+    appId: "1:562171645836:web:ded9a93970d0631ab4d0a9"
+    };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+         import{getDatabase,ref,child,onValue,set,get} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+         import { getAuth } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+         const realdb = getDatabase();
+
+        var OuterDiv=document.getElementById('ProductDiv');
+        var ArrayOfProducts=[];
+        window.addEventListener('load',GetAllProducts);
+
+        function GetAllProducts(){
+            const dbRef = ref(realdb);
+
+            get(child(dbRef,"TheProductRealdb"))
+            .then((snapshot)=>{
+                snapshot.forEach(prod => {
+                    ArrayOfProducts.push(prod.val());
+                    
+                });
+                AddAllProducts();
+            })
+        }
+        function AddAllProducts(){
+            let i=0;
+            ArrayOfProducts.forEach(prod => {
+                AddaProduct(prod,i++);
+            }); 
+        }
+function AddaProduct(product,index){
+    let html =
+    `
+    <img src="`+ product.LinksOfImagesArray[0] +`" class="thumb my-2" id="thumb1`+index+`">
+    <p class="title" id="title1`+index+`">`+product.ProductTitle+`</p>
+   `+ GetUl(product.Points) + GenStockLabel(product.Stock)+`
+    <h5 class="price">$`+product.price+`</h5>
+    <button class=" detbtns btn" id="detbtn"></button>
+    `
+
+    let newProd=document.createElement('div');
+    newProd.classList.add('productcard');
+    newProd.innerHTML=html;
+    OuterDiv.append(newProd);
+}
+function GetUl(array){
+    let ul = document.createElement('ul');
+    ul.classList.add('points');
+    array.forEach(element=>{
+        let li = document.createElement('li');
+        li.innerText=element;
+         ul.append(li);
+    });
+    return ul.outerHTML;
+}
+
+function GenStockLabel(stock){
+let stocklabel=document.createElement('h5');
+stocklabel.classList.add('stock');
+
+if(stock>0){
+    stocklabel.innerHTML="In Stock";
+    stocklabel.classList.add('text-sucess');
+
+}
+else{
+    stocklabel.innerHTML="out of stock";
+    stocklabel.classList.add('text-warning');
+
+}
+return stocklabel.outerHTML;
+}
+</script>
+
+
+</body>
+</html>
