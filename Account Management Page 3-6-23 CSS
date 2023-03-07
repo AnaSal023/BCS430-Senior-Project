@@ -175,13 +175,14 @@ body{
 .container{
 	background:#fff;
 	width: 800px;
-	height: 580px;
+	height: auto;
 	margin: auto;
 	position: relative;
 	margin-top:10px;
 	margin-bottom:10px;
 	padding: 15px;
 	box-shadow: 2px 5px 20px #00bfff;
+	
 	
 }
 
@@ -294,6 +295,7 @@ span{
 	font-size: 14px;
 	position: relative;
 	left:-190px;
+	content: flex;
 	
 
 }
