@@ -3,26 +3,24 @@
 <head>
   <link rel="stylesheet" href="styles1.css">
   <link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
-</head>
+
 <!-- Navigation Bar-->
-        <nav>
-		<!-- This is our logo picture-->
-    <style>
-      .firebase-emulator-warning { display: none; }
-      </style>
-            <a href ="index.html"><img  src="logo1.png" class="logo"></a> 
-			<a href ="index.htmll"><img  src="logo2.png" class="logo2"></a>
-            
-                <!-- Navigation Bar Items-->
-		<ul class="nav-links">                    
-                    <!--All the header tabs-->
-                    <li><a href="index.html">Home</a></li>                
-                    <li><a href="">Products</a></li> 
-                    <li><a href="">About</a></li> 
-                    <li class= "btn1"><a href="login.html"><span>Login</span></a></li>
-                    <li class= "btn2"><a href="signup.html"><span>Sign Up</span></a></li>         
-                </ul>          
-        </nav>
+<nav>
+  <!-- This is our logo picture-->
+          <a href ="index.html"><img  src="logo1.png" class="logo"></a> 
+    <a href ="index.html"><img  src="logo2.png" class="logo2"></a>
+          
+              <!-- Navigation Bar Items-->
+  <ul class="nav-links">                    
+                  <!--All the header tabs-->
+                  <li><a href="index.html">Home</a></li>                
+                  <li><a href="">Products</a></li> 
+                  <li><a href="about.html">About</a></li> 
+                  <li class= "btn1"><a href="login.html"><span>Login</span></a></li>
+                  <li class= "btn2"><a href="signup.html"><span>Sign Up</span></a></li>          
+              </ul>          
+      </nav>
+  </head>
 <title>Sign Up</title>
 <br><img src="sign.jpg" alt="signup">
 <!-- registration form is print in the form of a table --> 
@@ -30,10 +28,10 @@
 			  <th colspan="2" align="center">Welcome to Uni-Thrift</th>
 			 <!--checks the input data with javascript functions -->
 				<div id="form">
-        <tr><td>First Name</td><div data-role='fieldcontain'>
+        <!--<tr><td>First Name</td><div data-role='fieldcontain'>
 				  <td><input type="text" maxlength="16" id="firstname" placeholder="Please enter you first name" >
 				<tr><td>Last Name</td><div data-role='fieldcontain'>
-				  <td><input type="text" maxlength="16" id="lastname" placeholder="Please enter you last name">
+				  <td><input type="text" maxlength="16" id="lastname" placeholder="Please enter you last name"> -->
           <tr><td>Email</td>
 				<td><input type="email" maxlength="64" id="email" placeholder="Please enter your email address">
 				</td></tr>
@@ -62,7 +60,7 @@
         signOut,
         setPersistence,
         browserSessionPersistence  } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js';
-      import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js';
+      import { doc, setDoc, getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js';
       import { getDatabase, set, get, update, remove, ref} from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js';
 
       //firabse configuration
@@ -83,52 +81,76 @@
         const db = getDatabase();
 
         //get unput fields
-        const firstname = document.querySelector('#firstname');
+        /*const firstname = document.querySelector('#firstname');
         const lastname = document.querySelector('#lastname');
+        const fullName = firstname.value + " " + lastname.value; 
+        */
         const email = document.querySelector('#email');
         const password = document.querySelector('#password');
         const cpass = document.querySelector('#cpass');
         const form = document.querySelector('#form');
-        const fullName = firstname.value + " " + lastname.value;
+        
         //hash password
         const hashPassword = CryptoJS.SHA256(password);
         //get sign up button
         const signUp = document.querySelector("#signUp");
-        //gets value from const
-        const signUpEmail = email.value;
-        const signUpPassword = password.value;
+        
         //sings user up
         const userSignUp = async() => {
-          
+          //gets value from const
+          const signUpEmail = email.value;
+          const signUpPassword = password.value;
           //validate fields
-          validateFunction(loginEmail, loginPassword);
-          
+          if (validateFunction() == ""){
+
           //add user to aunthentication 
           createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
           .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);
-            alert("Your created an account sucesfully, please log in!");
-            window.location.href="login.html";
+              const user = userCredential.user;
+              set(ref(db, "Users/", user), {
+                email : email.value, 
+                firstname : firstname.value,
+                lastname : lastname.value
+              }); 
+              alert("Your created an account sucesfully, please log in!");
+              window.location.href="login.html";
           })
           //if a error occurs it will display in the browser console
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode + "/n" + errorMessage)
+            console.log(errorCode + "/n" + errorMessage);
           })
         }
+      }
+        
+        
+      /*
+        const addUser = async() => {
+          s
+            //add this user to firebase database
+             set(ref(db, "Users/", fullName), {
+                email : email.value, 
+                firstname : firstname.value,
+                lastname : lastname.value
+              }); 
+        } 
+        signUp.addEventListener('click', addUser); */
+        
+        
         //when button is click it runs the user signup function
+        
         signUp.addEventListener('click', userSignUp);
-          
+      
+
         //validate input fields
         var validateFunction = function()
           {
-            var fail = validateFirst(firstname);
-            fail += validateLast(lastname);
-            fail += validatePassword(password);
-            fail += validateEmail(email);
-            fail += validateCPassword(cpass, password);
+            /*var fail = validateFirst(firstname.value);
+            fail += validateLast(lastname.value); */
+            var fail = validatePassword(password.value);
+            fail += validateEmail(email.value);
+            fail += validateCPassword(cpass.value, password.value);
             if (fail == "")     return true
             else { alert(fail) }
           }
@@ -153,20 +175,17 @@
             if (field == "") return "No Password was entered."
             else if (field.length < 6)
               alert("Passwords must be at least 6 characters.")
-            else if (/[A-Z]/       .test(field) &&
-                    /[a-z]/       .test(field) &&
-                    /[0-9]/       .test(field) &&
-                    /[^A-Za-z0-9]/.test(field))
+            else if (field.search(/[a-z]/i) < 0 && field.search(/[0-9]/) < 0)
               alert("Password require one each of a-z, A-Z and 0-9.")
             return true
           }
           //validate email (must have email symbols and end in edu)
           function validateEmail(field)
           {
-            var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            var validRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu$/;
             if (field == "") alert("No Email was entered.")
-            else if (!field.value.match(validRegex))
-              alert("The Email address is invalid.")
+            else if (!field.match(validRegex))
+              alert("The Email address is invalid. \n Please enter a valid email address.")
             return true
           }
           //validate confirm password (must be the same as password)
