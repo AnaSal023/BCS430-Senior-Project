@@ -47,8 +47,7 @@
 		</table><br><br><br><br><br>
       <!-- javascripts -->
       <!-- scripts to hash password -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.js"></script>
+      
     <script type="module">
       //imports from firebase
       import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
@@ -78,7 +77,6 @@
 
         //initialize variables
         const auth = getAuth(firebaseApp);
-        const db = getDatabase();
 
         //get unput fields
         /*const firstname = document.querySelector('#firstname');
@@ -101,7 +99,7 @@
           const signUpEmail = email.value;
           const signUpPassword = password.value;
           //validate fields
-          if (validateFunction() == ""){
+         validateFunction();
 
           //add user to aunthentication 
           createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
@@ -149,7 +147,7 @@
             if (fail == "")     return true
             else { alert(fail) }
           }
-          //validate first name 
+          /* //validate first name 
           function validateFirst(field)
           {
             if (field == "") alert("No first name was entered.")
@@ -162,8 +160,8 @@
             if (field == "") alert("No last name was entered.")
             
             return true
-          }
-          //va;idate pasword (must follow requirenments)
+          } */
+          //validate pasword (must follow requirenments)
           function validatePassword(field)
           {
             
