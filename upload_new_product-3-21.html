@@ -31,7 +31,8 @@
       <button type="submit" class="button">Search</button>
     </form>
         <!-- checkout form -->
-        <br><div class='checkoutForm' display='block'>
+        
+        <br><div id="checkoutForm" class='checkoutForm' >
           
             <label></label>
             <div>
@@ -79,7 +80,13 @@
                   <label></label>
                   <button id="upload" class="button">Upload</button>
                 </div> <br>
+                <div data-role='fieldcontain'>
+                  <label></label>
+                  <button id="reload" onclick="window.location.reload()" class="button">Add New Item</button>
+                </div> <br>
         </div><br><br>
+        
+     
     <!-- javascript -->
       <script type="module">
           
@@ -97,6 +104,7 @@
               const addBtn = document.getElementById('upload');
               const proglab =document.getElementById('loadlab');
               const pickup = document.getElementById('pickup');
+              const inputs = document.querySelectorAll('#imgesDiv, #name, #description, #condition, #price, #email');
               
               function pickUpCheckbox() {  
                 if (pickup.checked == true ){
@@ -112,6 +120,16 @@
                   return donate;
                 }
                 else { return null;}
+              }
+
+              function getPrice() {
+                if(DonateCheckbox() == "on"){
+                  return null;
+                }
+                else {
+                  const price = document.getElementById('price').value;
+                  return price;
+                }
               }
 
               function OpenFileDialog(){
@@ -160,7 +178,7 @@
                   }
 
               function GetImgUploadProgress(){
-                  return 'Images Uploaded' + ImageLinksArray.length + ' of ' + Files.length
+                  return 'Images Uploaded ' + ImageLinksArray.length + ' of ' + Files.length
               }
 
               function IsAllImagesUploaded(){
@@ -171,12 +189,14 @@
               function RestoreBack(){
                   selBtn.disabled=false;
                   addBtn.disabled=false;
+                  
               }
 
               // events
                   selBtn.addEventListener('click',OpenFileDialog);
                   
-                  addBtn.addEventListener('click',UploadAllImages); 
+                  addBtn.addEventListener('click',UploadAllImages);
+                  
 
               //upload 
               function UploadAllImages(){
@@ -188,6 +208,7 @@
                   for (let i=0;i<Files.length; i++){
                       UploadAnImage(Files[i],i);
                   }
+                  return true;
               }
 
 
@@ -203,7 +224,7 @@
               UploadTask.on('state_changed',(snapshot)=>{
 
                   proglab.innerHTML=GetImgUploadProgress();
-
+                  
               },
 
               (error)=>{
@@ -216,6 +237,7 @@
                       ImageLinksArray.push(downloadURL);
                       if(IsAllImagesUploaded()){
                           UploadAProduct();
+                          
                       }
                       });
                   }
@@ -247,14 +269,14 @@
                       ProductTitle:name.value,
                       Condition:condition.value,
                       Description:description.value,
-                      Price:price.value,
+                      Price:getPrice(),
                       Donate:DonateCheckbox(),
                       Email:email.value,
                       Pickup:pickUpCheckbox(),
                       LinksOfImagesArray: ImageLinksArray
                   });
                   alert ("Upload Is Sucessful");
-                  RestoreBack();
+                  RestoreBack(); 
               }
               
           
