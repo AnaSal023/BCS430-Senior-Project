@@ -122,7 +122,7 @@
                             <h4 class="name">${product.Description}</h4>
                             <h5 class="price"> Product is Donated</h5>
                             <h6 class="user">Seller is ${product.Email}</h6>
-                            <h6 class="condition">Condition is ${product.Condition} </h6>
+                            <h7 class="condition">Condition is ${product.Condition} </h7>
                             <button class="btns" data-image="${product.LinksOfImagesArray[0]}" data-item="${product.ProductTitle}" data-price="${product.Price}">Add to Cart</button>
                     </div>
                 `;
@@ -133,7 +133,7 @@
                             <h4 class="name">${product.Description}</h4>
                             <h5 class="price">Price is $${product.Price}</h5>
                             <h6 class="user">Seller is ${product.Email}</h6>
-                            <h6 class="condition">Condition is ${product.Condition} </h6>
+                            <h7 class="condition">Condition is ${product.Condition} </h7>
                             <button class="btns" data-image="${product.LinksOfImagesArray[0]}" data-item="${product.ProductTitle}" data-price="${product.Price}">Add to Cart</button>
                     </div>
                 `;
