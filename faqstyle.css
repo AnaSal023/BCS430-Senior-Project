@@ -1,0 +1,81 @@
+
+/* FAQ CSS STYLE*/ 
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;   
+}
+
+body {
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: deepskyblue;
+    color: black;
+}
+
+section {
+    min-height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    
+}
+
+.title{
+    font-size: 3rem;
+    margin: 2rem ;
+}
+
+.faq {
+    max-width:500px;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+}
+
+.question {
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.question h3 {
+    font-size: 1.8rem;
+}
+.answer {
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 1.4s ease;
+}
+
+.answer p {
+    padding-top: 1rem;
+    line-height:1.6;
+    font-size: 1.4rem;
+}
+/* ANSWER FADE IN */ 
+.faq.active .answer {
+    max-height:300px;
+    animation: fade 1s ease-in-out;
+}
+
+.faq.active svg {
+transform: rotate(180deg);
+}
+
+svg {
+    transition: transform .7s ease-in;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0; 
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform:  translateY(0px);
+    }
+}
