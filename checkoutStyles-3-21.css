@@ -237,8 +237,11 @@ h1 {
     font-family: 'Bebas Neue', sans-serif;
     
 }   
-fieldcontain{
-   font-size: 4em; 
+.ship {
+    display: block;
+}
+.active {
+    display: none;
 }
 label {
     font-size: 1em;
@@ -251,6 +254,7 @@ padding-top: 17px;
 }
 .button {
     font-size: 1.5em;
+    color: white;
     font-family: 'Bebas Neue', sans-serif;
     background-color: rgb(127,63,152);
     font-weight: bold;
@@ -265,7 +269,25 @@ label {
 
 input {
     font-size: 1.5em;
+    font-family: 'EB Garamond', sans-serif;
 }
+textarea {
+    font-size: 1.5em;
+    font-family: 'EB Garamond', sans-serif;
+
+}
+
+.num-of-items {
+	background-color: #D8BDF8;
+	color: #8b008b;
+	font-size: 18px;
+	padding: 2px 5px;
+	border-radius: 50%;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	text-align: center;
+ }
 
 
 
