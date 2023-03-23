@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "ShoppingCSS.css" rel ="stylesheet" type = "text/css">
+		<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="logo.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="unithrift.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="index.html">Home</a></li>                
+                    <li><a href="products.html">Products</a></li> 
+                    <li><a href="about.html">About</a></li>  
+					<li><a href="ShoppingCartPage.html">Shopping Cart <span id = "countOfItems" class="num-of-items">0</span></a></li>
+                </ul>          
+        </nav>
+	</div>
+</head>
+<body>
+	
+	<div class="heading" align="center">Your Shopping Cart</div>
+
+	<div>
+		<table class="t">
+			<thead>
+				<th></th>
+				<th>Image</th>
+				<th>Product</th>
+				<th>Price</th>
+			</thead>
+        
+			<tbody id = "tbody1">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		
+		</table>
+	</div>
+	<br><br><br>
+	<div class="checkout">
+		<table>
+			<tr>
+				<td class="items-total">Subtotal</td>
+				<td id = "subtotal">$0.00</td>
+			</tr>
+			<tr>
+				<td class="shipping-total">Shipping Total</td>
+				<td id = "shipping">$0.00</td>
+			</tr>
+			<tr>
+				<td class="grand-total">Grand Total</td>
+				<td id = "total">$0.00</td>
+			</tr>
+		</table>
+		<button id = "checkout" class="checkout-button">Proceed to Checkout</button>
+	</div>
+
+	<script type="module">
+
+		var tbody = document.getElementById('tbody1');
+
+		function AddItems(image, product, price){
+			let trow = document.createElement("tr");
+			let td1 = document.createElement('td');
+			let removeButton = document.createElement('button');
+			removeButton.innerHTML = 'Remove';
+			removeButton.classList.add('remove-button');
+			td1.appendChild(removeButton);
+			trow.appendChild(td1);
+			let td2 = document.createElement('td');
+			let td3 = document.createElement('td');
+			let td4 = document.createElement('td');
+
+			let img = document.createElement('img');
+			img.src = image;
+			img.width = 100;
+			td2.appendChild(img);
+
+			td3.innerHTML = product;
+			td4.innerHTML = price;
+
+			trow.appendChild(td1);
+			trow.appendChild(td2);
+			trow.appendChild(td3);
+			trow.appendChild(td4);
+
+			tbody.appendChild(trow);
+
+			removeButton.addEventListener('click', function() {
+  				RemoveItem(this);
+			});
+
+			updateTotals();
+
+		}
+		
+		function AddAllItems(cartItems){
+		tbody.innerHTML="";
+			cartItems.forEach(element => {
+				if(element.Price == 'undefined'){
+
+					AddItems(element.Image, element.Item, "$ 0.00" );
+
+				}else{
+					AddItems(element.Image, element.Item, "$" + element.Price);
+				}
+				
+			});
+		}
+
+		function RemoveItem(button) {
+			var row = button.parentNode.parentNode;
+			row.parentNode.removeChild(row);
+			updateCartItemCount();
+			updateTotals();
+		}
+
+		function updateCartItemCount(){
+			const countOfItems = document.querySelectorAll('#tbody1 tr').length;
+			const countElement = document.getElementById('countOfItems');
+			countElement.innerText = countOfItems;
+		}
+
+		function updateTotals() {
+  			const rows = document.querySelectorAll('#tbody1 tr');
+  			let subtotal = 0;
+  			let shipping = 0;
+  			let grandTotal = 0;
+  			rows.forEach(row => {
+    			const priceText = row.querySelector('td:nth-child(4)').textContent;
+    			const price = parseFloat(priceText.substring(1));
+    			subtotal += price;
+  			});
+  			if (subtotal > 0) {
+    			shipping = 5;
+  			}
+  			grandTotal = subtotal + shipping;
+  			document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+  			document.getElementById('shipping').textContent = '$' + shipping.toFixed(2);
+  			document.getElementById('total').textContent = '$' + grandTotal.toFixed(2);
+		}
+
+
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+	  
+		// Your web app's Firebase configuration
+		const firebaseConfig = {
+		  apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+		  authDomain: "uni-thrift.firebaseapp.com",
+		  databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+		  projectId: "uni-thrift",
+		  storageBucket: "uni-thrift.appspot.com",
+		  messagingSenderId: "562171645836",
+		  appId: "1:562171645836:web:3806e088ff5c4692b4d0a9"
+		};
+	  
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+
+		import {getDatabase, ref, child, onValue, get} 
+		from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+
+		const db = getDatabase();
+
+		function GetAllDataOnce(){
+			const dbRef = ref(db);
+
+			get(child(dbRef, "Cart_Items"))
+			.then((snapshot)=>{
+				var items = [];
+				snapshot.forEach(childSnapshot => {
+					items.push(childSnapshot.val());
+				});
+
+				AddAllItems(items);
+				updateCartItemCount();
+			});
+		}
+
+		window.onload = GetAllDataOnce;
+
+		const checkoutBtn = document.getElementById("checkout");
+		checkoutBtn.addEventListener("click", () => {
+			window.location.href = "checkout.html";
+		});
+
+	</script>
+	<footer class="footer">
+
+        <ul class="social-icon">
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
+        </ul>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="index.html">Home</a></li>
+          <li class="menu__item"><a class="menu__link" href="products.html">Products</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+    
+        </ul>
+        <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+      </footer>
+	  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	</body> 
+</html>
