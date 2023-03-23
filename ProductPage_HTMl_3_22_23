@@ -121,6 +121,7 @@
                         <img src="${product.LinksOfImagesArray[0]}" alt="${product.ProductTitle}" class="img">
                             <h4 class="name">${product.Description}</h4>
                             <h5 class="price"> Product is Donated</h5>
+                            <h8 class="price">Item is Free </h8>
                             <h6 class="user">Seller is ${product.Email}</h6>
                             <h7 class="condition">Condition is ${product.Condition} </h7>
                             <button class="btns" data-image="${product.LinksOfImagesArray[0]}" data-item="${product.ProductTitle}" data-price="${product.Price}">Add to Cart</button>
