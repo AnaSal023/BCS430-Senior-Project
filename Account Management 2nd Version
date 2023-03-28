@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style4.css" rel ="stylesheet" type = "text/css">   
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fontawesome.com/v6/docs/web/setup/get-started">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+	
+
+	
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="media/logo1.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="media/logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="test1.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="about.html">About</a></li> 
+					<li><a href="demographics.html">My Account</a></li>
+					<li><ion-icon name="cart-outline"></ion-icon></li>
+					
+                            
+                </ul>          
+        </nav>
+	</div>
+		
+
+
+    <div class="tabs">		
+        <div class="tabs__sidebar">
+            <button class="tabs__button" data-for-tab="1">Demo</button>
+            <button class="tabs__button" data-for-tab="2">Payment</button>
+            <button class="tabs__button" data-for-tab="3">History</button>
+            <button class="tabs__button" data-for-tab="4">Items </button>
+            <button class="tabs__button" data-for-tab="5">Sold</button>
+        </div>
+
+
+ <!--------------Start of profile information------------->
+        <div class="tabs__content" data-tab="1">
+            		
+        
+		
+
+			<h1> Personal Information </h1>
+            <!--<h2> ID</h2>
+			<input id ="enterID" type="text">-->
+			<h2> First Name </h2>
+			<input id ="enterFirstName" type="text" placeholder="Enter First Name">
+            <h2> Last Name </h2>
+			<input id ="enterLastName" type="text" placeholder="Enter Last Name"> 
+			<h2> Birthday</h2>
+			<input id="enterBirthday" type="text" placeholder="Enter Birthday"> 
+			<h2> Gender </h2>
+			<input id="enterGender" type="age" placeholder="Enter Gender">
+			<h2> UserName </h2>
+			<input id="enterEmail" type="text" placeholder="Enter User Name">
+			<h2> Password </h2>
+			<input id="password" type="password" value="brightcode">
+			<button id ="insert"> Insert/Update </button>
+       </div> 
+
+<!--------------End of profile information------------->
+
+		
+
+<!---------------------Start of Payment Information Tab------------------------>
+        <div class="tabs__content" data-tab="2">
+              
+		
+			<h1> Payment Information </h1>
+			<h2> Name on Credit Card </h2>
+			<input type="Text" class="input" value="Jorge M Torres ">
+			<h2> Credit Card Number </h2>
+			<input type="Text" class="input" value="0123 **** **** 4567 ">
+			<h2> Expiration Date </h2>
+			<input type="Text" class="input" value="01/02/2025">
+			<h2> CVV Number</h2>
+			<input type="Text" class="input" value="123">
+			<h2> Billing Address </h2>
+			<input type="text" class="input" value="123 4th Ave Bay Shore NY">
+			<button id ="btn"> Update </button>
+        </div>
+            
+
+        
+<!---------------------Start of Payment Information Tab------------------------>		
+        
+
+
+
+<!---------------------Start of Order History Tab------------------------------->
+        <div class="tabs__content" data-tab="3">	
+            <h1> Order History </h1>
+		
+
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th> Order Number</th>
+                        <th>Image</th>
+                        <th>Date Purchased</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        </tr>
+                    </thead>
+        
+        
+                    <tbody id = "tbody1">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+             
+                </table>
+            </div>
+        </div>
+<!---------------------End of Order History Tab------------------------------->
+        
+
+
+
+
+
+<!------------------- Start of Items Being Sold Tab--------------------------->
+        <div class="tabs__content" data-tab="4">
+            <h1> Items Being Sold </h1>
+		
+            <button id ="sellItemBtn" onclick="sellItem()" class="btn1"> Add New Item to Sell </button>
+			<h2> Name of Item </h2>
+			<input type="Text" class="input" placeholder="HTML, CSS Textbook">
+			<h2> Category </h2>
+			<input type="Text" class="input" placeholder="Textbook">
+			<h2> Condition </h2>
+			<input type="Text" class="input" placeholder="Used">
+			<h2>Price</h2>
+			<input type="Text" class="input" placeholder="9.99">
+
+        </div>
+<!------------------- End of Items Being Sold Tab----------------------------->
+
+
+<!--------------------Start of Products Already Sold Tab---------------------->
+        <div class="tabs__content" data-tab="5">
+            <h1> Items Sold </h1>
+
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Product Name</th>
+                        <th>Image</th>
+                        <th>Upload Date</th>
+                        <th>Price</th>
+                        <th>Condition</th>
+                        <th>Description</th>
+                        </tr>
+                    </thead>
+        
+        
+                    <tbody id = "tbody2">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+           </div>
+            
+		</div>
+    
+<!--------------------Start of Products Already Sold Tab---------------------->
+
+</div>	  
+
+
+
+
+
+
+
+
+
+
+
+    <!--This top section is copied and pasted from our firebase page. -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+          authDomain: "uni-thrift.firebaseapp.com",
+          databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+          projectId: "uni-thrift",
+          storageBucket: "uni-thrift.appspot.com",
+          messagingSenderId: "562171645836",
+          appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      
+        
+        //this is needed to pull and save the data
+    
+        import {getDatabase, ref, get, set, child, update, remove, push}
+            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"; //The link aboved is copied here but the word app is replaced with database
+    
+            
+    
+            const db = getDatabase();
+    
+
+
+
+
+            function setupTabs() {
+            document.querySelectorAll(".tabs__button").forEach(button => {
+                button.addEventListener("click", () => {
+                    const sideBar = button.parentElement;
+                    const tabsContainer = sideBar.parentElement;
+                    const tabNumber = button.dataset.forTab;
+                    const tabToActivate = tabsContainer.querySelector(`.tabs__content[data-tab="${tabNumber}"]`);
+                    sideBar.querySelectorAll(".tabs__button").forEach(button =>{
+                        button.classList.remove("tabs__button-active");
+                    });
+                    tabsContainer.querySelectorAll(".tabs__content").forEach(tab=>{
+                        tab.classList.remove("tabs__content-active");
+                    });
+                    button.classList.add("tabs__button-active");
+                    tabToActivate.classList.add("tabs__content-active");
+                });
+            });
+        }
+        document.addEventListener("DOMContentLoaded", () =>{
+            setupTabs();
+            document.querySelectorAll(".tabs").forEach(tabsContainer => {
+                tabsContainer.querySelector(".tabs__sidebar .tabs__button").click();
+            })
+        
+        });
+
+
+
+
+
+
+
+
+            /*----------------Start of the Update page---------------*/
+            
+
+            var enterFirstName = document.querySelector("#enterFirstName");
+            var enterLastName = document.querySelector("#enterLastName");
+            var enterBirthday = document.querySelector("#enterBirthday");
+            var enterGgender = document.querySelector("#enterGender");
+            var enterEmail = document.querySelector("#enterEmail");
+            var password = document.querySelector("#password");
+    
+    
+    
+            var insertBtn = document.querySelector("#insert");
+            
+    
+            function InsertData() {
+                set(ref(db, "User/"+ enterEmail.value),{
+                    FirstName: enterFirstName.value,
+                    LastName: enterLastName.value,
+                    //ID: enterID.value,
+                    Birthday: enterBirthday.value,
+                    Gender: enterGender.value,
+                    Email: enterEmail.value,
+                    Password: password.value
+                })
+                .then(()=>{
+                    alert("Data added successfully");
+                })
+                .catch((error)=>{
+                    alert(error);
+                });
+            }
+
+           
+    
+            insertBtn.addEventListener('click', InsertData);
+        
+           
+        
+
+           /*----------------End of the Update page---------------*/
+
+
+
+
+
+
+
+
+
+
+           /*--------Start of Product Order History tab-----------*/
+
+           var tbody = document.getElementById('tbody1');
+        
+                function AddItems(orderNum, image,date, product, price){
+                    let trow = document.createElement("tr");
+                    let td1 = document.createElement('td');
+                    
+                    
+                    trow.appendChild(td1);
+                    let td2 = document.createElement('td');
+                    let td3 = document.createElement('td');
+                    let td4 = document.createElement('td');
+                    let td5 = document.createElement('td');
+        
+                    let img = document.createElement('img');
+                    td1.innerHTML = orderNum;
+        
+                    img.src = image;
+                    img.width = 100;
+                    td2.appendChild(img);
+                    td3.innerHTML = date;
+                    td4.innerHTML = product;
+                    td5.innerHTML = price;
+        
+                    trow.appendChild(td1);
+                    trow.appendChild(td2);
+                    trow.appendChild(td3);
+                    trow.appendChild(td4);
+                    trow.appendChild(td5);
+        
+                    tbody.appendChild(trow);
+        
+                }
+        
+                function AddAllItems(orderHistory){
+                tbody.innerHTML="";
+                    orderHistory.forEach(element => {
+                        AddItems(element.orderNumber,element.Product_Img_Url,element.date, element.productName, "$" + element.totalPrice);
+                    });
+                }
+               
+        
+        
+        
+                async function GetAllDataOnce(){
+                    const dbRef = ref(db);
+    
+                    
+                    get(child(dbRef, "orders"))
+                    .then((snapshot)=>{
+                        var items = [];
+                        snapshot.forEach(childSnapshot => {
+                            items.push(childSnapshot.val());
+                        });
+        
+                        AddAllItems(items);
+                        
+                    });
+   
+                    
+                }
+        
+               window.onload = GetAllDataOnce;
+              
+
+
+         /*------------End of Product Order History tab-----------------*/
+        
+        
+
+
+
+
+
+
+
+
+
+         /*-----------Start of Items currently being <sold------------------*/
+
+         /*-----------End of Items currently being <sold------------------*/
+
+
+
+
+
+
+
+
+
+
+        /*-------------Start of the Products Sold History tab------------*/
+        
+            var tbody = document.getElementById('tbody2');
+        
+            function AddSoldItems(productName, imag, uploadDate, prod, pri, desc){
+            let trow = document.createElement("tr");
+            let td1 = document.createElement('td');
+            
+            
+            trow.appendChild(td1);
+            let td2 = document.createElement('td');
+            let td3 = document.createElement('td');
+            let td4 = document.createElement('td');
+            let td5 = document.createElement('td');
+            let td6 = document.createElement('td');
+
+            let img = document.createElement('img');
+            td1.innerHTML = productName;
+
+            img.src = imag;
+            img.width = 100;
+            td2.appendChild(img);
+            td3.innerHTML = uploadDate;
+            td4.innerHTML = prod;
+            td5.innerHTML = pri;
+            td6.innerHTML = desc;
+
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+            trow.appendChild(td6);
+
+            tbody.appendChild(trow);
+
+
+        }
+
+        function AddItemsSold(soldHistory){
+        tbody.innerHTML="";
+            soldHistory.forEach(element => {
+                AddSoldItems(element.productName, element.Product_Img_Url, element.uploadedDate,  "$" + element.price, element.condition, element.description);
+            });
+        }
+
+        async function GetDataOnce(){
+                    const dbRef = ref(db);
+        
+                    get(child(dbRef, "soldHistory"))
+                    .then((snapshot)=>{
+                        var items2 = [];
+                        snapshot.forEach(childSnapshot => {
+                            items2.push(childSnapshot.val());
+                        });
+
+                        AddItemsSold(items2);
+                    });
+                            
+
+                }
+                
+
+
+                window.onload = GetDataOnce;
+
+
+        /*-------------End of the Products Sold History tab------------*/
+    
+        
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Footer starts-->
+<footer class="footer">
+
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+	  
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Products</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+    </ul>
+    <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+  </footer>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  <!--function below will make it where only information pertaining to each tab shows such as demographic icon will show name, address, etc but will not show payment information-->
+  <script>
+	const tabBtn = document.querySelectorAll(".tab");
+	const tab = document.querySelectorAll(".tabShow");
+	
+	function tabs(panelIndex){
+		tab.forEach(function(node){
+			node.style.display = "none";
+			
+		});
+		tab[panelIndex].style.display = "block";
+	}
+	tabs(0);
+
+
+  </script>
+  <!--Footer ends-->
+  
+
+
+  
+  
+  
+  
+</body>
+</html>
