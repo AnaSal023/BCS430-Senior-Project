@@ -181,7 +181,14 @@
             });
         }
 
-       
+       const cartItemsRef = ref(realdb, "Cart_Items");
+
+		onValue(cartItemsRef, (snapshot) => {
+  			const numItems = Object.keys(snapshot.val() || {}).length;
+
+  			const countOfItems = document.getElementById("countOfItems");
+  			countOfItems.textContent = numItems;
+		});
         
      });
 
