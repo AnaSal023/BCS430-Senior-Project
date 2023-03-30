@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+	
+	<!--Connects to the css file-->
+        <link href = "style3.css" rel ="stylesheet" type = "text/css">   
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fontawesome.com/v6/docs/web/setup/get-started">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+	
+
+	
+    <div class="header">
+    	
+	 <!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="homepage.html"><img  src="media/logo1.png" class="logo"></a> 
+			<a href ="homepage.html"><img  src="media/logo2.png" class="logo2"></a>
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="test1.html">Home</a></li>                
+                    <li><a href="">Products</a></li> 
+                    <li><a href="about.html">About</a></li> 
+					<li><a href="demographics.html">My Account</a></li>
+					<li><ion-icon name="cart-outline"></ion-icon></li>
+					
+                            
+                </ul>          
+        </nav>
+	</div>
+		
+
+
+
+
+
+
+
+
+<div class="container">		
+
+    <!--Account Management option such as personal information, payment, orders, selling items-->
+	<div class="topbox">
+		<nav>
+			<!--<a href="itemsSold.html">
+				<i class="fa fa-user-circle" aria-hidden="true" title="User Demographics"></i>
+            
+			</a>
+
+			<a href="payment.html" > 
+				<i class="fa fa-credit-card" aria-hidden="true" title="Payment"></i>
+              
+			</a>
+
+            <a href="orderHistory.html"> 
+				<i class="fa fa-shopping-basket" aria-hidden="true" title="Purchase History"></i> 
+                
+			</a>
+
+            <a onclick="tabs(3)" class="tab3"> 
+				<i class="fa fa-tags" aria-hidden="true" title="Items Being Sold"></i> 
+                
+			</a>
+
+            <a onclick="tabs(4)" class="tab4"> 
+				<i class="fa fa-history" aria-hidden="true" title="Items Sold"> </i> 
+                
+			</a>-->
+
+            <ul class="nav-links">                    
+               
+                <li><a class="fa fa-user-circle" aria-hidden="true" title="User Demographics"  href="demographics.html"></a></li>
+                <li><a class="fa fa-credit-card" aria-hidden="true" title="Payment" href="payment.html"></a></li>                
+                <li><a class="fa fa-shopping-basket" aria-hidden="true" title="Purchase History" href="orderHistory.html"></a></li> 
+                <li><a class="fa fa-tags" aria-hidden="true" title="Items Being Sold" href="uploadItem.html"></a></li> 
+                <li><a class="fa fa-history" aria-hidden="true" title="Items Sold" href="soldItems.html"></a></li>                   
+                        
+            </ul>  
+
+
+		</nav>
+
+	</div>
+
+
+
+	
+	<!--Information on the bottom side of the screen(body) for profile-->
+	<div class="lowerbox">
+
+        <!--Class to get photo uploaded on profile-->
+       <!-- <div class="profile-photo">
+            <img src="media/logo1.png" id="photo">
+            <input type="file" id="file">
+            <label for="file" id="uploadBtn">Choose Photo</label>
+            
+        </div>-->
+
+
+
+        
+	
+
+        <!---------------------Start of Order History Tab------------------------------->
+        <div class="order tabShow">
+		
+            
+            <h1> Order History </h1>
+		
+
+            <div>
+                <table class="t ">
+                    <thead>
+                        <tr>
+                        <th>Order Number</th>
+                        <th>Image</th>
+                        <th>Date Purchased</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        </tr>
+                    </thead>
+        
+        
+                    <tbody id = "tbody">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+        <!---------------------End of Order History Tab------------------------------->
+
+
+
+
+
+
+
+    </div>	  
+
+
+</div>
+
+<!--This top section is copied and pasted from our firebase page. -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+      authDomain: "uni-thrift.firebaseapp.com",
+      databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+      projectId: "uni-thrift",
+      storageBucket: "uni-thrift.appspot.com",
+      messagingSenderId: "562171645836",
+      appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  
+    
+    //this is needed to pull and save the data
+
+    import {getDatabase, ref, get, set, child, update, remove, push}
+        from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"; //The link aboved is copied here but the word app is replaced with database
+
+        
+
+        const db = getDatabase();
+
+
+
+
+       /*--------Start of Product Order History tab-----------*/
+
+       var tbody = document.getElementById('tbody');
+    
+            function AddItems(orderNum, image,date, product, price){
+                let trow = document.createElement("tr");
+                let td1 = document.createElement('td');
+                
+                
+                trow.appendChild(td1);
+                let td2 = document.createElement('td');
+                let td3 = document.createElement('td');
+                let td4 = document.createElement('td');
+                let td5 = document.createElement('td');
+    
+                let img = document.createElement('img');
+                td1.innerHTML = orderNum;
+    
+                img.src = image;
+                img.width = 100;
+                td2.appendChild(img);
+                td3.innerHTML = date;
+                td4.innerHTML = product;
+                td5.innerHTML = price;
+    
+                trow.appendChild(td1);
+                trow.appendChild(td2);
+                trow.appendChild(td3);
+                trow.appendChild(td4);
+                trow.appendChild(td5);
+    
+                tbody.appendChild(trow);
+    
+                
+    
+            }
+    
+            function AddAllItems(orderHistory){
+            tbody.innerHTML="";
+                orderHistory.forEach(element => {
+                    AddItems(element.orderNumber,element.Product_Img_Url,element.date, element.productName, "$" + element.totalPrice);
+                });
+            }
+    
+    
+    
+            function GetDataOnce(){
+                const dbRef = ref(db);
+
+                
+                get(child(dbRef, "orders"))
+                .then((snapshot)=>{
+                    var items = [];
+                    snapshot.forEach(childSnapshot => {
+                        items.push(childSnapshot.val());
+                    });
+    
+                    AddAllItems(items);
+                    
+                });
+
+                
+            }
+    
+           window.onload = GetDataOnce;
+
+
+     /*------------End of Product Order History tab-----------------*/
+    
+    
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<!--Footer starts-->
+ <footer class="footer">
+
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+	  
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Products</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+    </ul>
+    <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+  </footer>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  <!--function below will make it where only information pertaining to each tab shows such as demographic icon will show name, address, etc but will not show payment information-->
+  <script>
+	const tabBtn = document.querySelectorAll(".tab");
+	const tab = document.querySelectorAll(".tabShow");
+	
+	function tabs(panelIndex){
+		tab.forEach(function(node){
+			node.style.display = "none";
+			
+		});
+		tab[panelIndex].style.display = "block";
+	}
+	tabs(0);
+
+
+  </script>
+  <!--Footer ends-->
+  
+
+
+  
+  
+  
+  
+</body>
+</html>
