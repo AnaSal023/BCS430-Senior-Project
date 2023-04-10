@@ -1,0 +1,390 @@
+
+html {
+    font-family: 'Bebas Neue', sans-serif;   
+    font-weight: bold;
+}
+head {
+    font-family: 'Bebas Neue', sans-serif;   
+    font-weight: bold;
+}
+
+/*CSS properties for the header*/
+.header {                     
+    height: 100%;
+    width: 100%;
+    padding: 0 1px;
+    background-color:white;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Bebas Neue', sans-serif;   
+    font-weight: bold;
+}
+
+
+  /*CSS properties for Navigation Bar */
+nav {             
+    
+    padding: 1px;
+    margin: -1px;
+    display: flex;     
+    align-items: center;
+    justify-content: space-between;
+    -webkit-user-select:none;
+    -ms-user-select:none;			/*Gabriel can you explain what this is*/
+    -user-select:none;
+    font-family: 'Bebas Neue', sans-serif;   
+    font-weight: bold;
+}
+ 
+.num-of-items {
+	background-color: #D8BDF8;
+	color: #8b008b;
+	font-size: 18px;
+	padding: 2px 5px;
+	border-radius: 50%;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	text-align: center;
+ }
+ 
+    
+.logo {     /*size of logo*/
+
+    margin-left: 10px;
+    margin-top:5px;
+    margin-bottom:5px;
+    width: 300px;
+    position: relative;
+}
+
+.logo2 {   	  /*size of logo2*/
+    margin-left: -570px;
+    margin-top:10px;
+    width: 200px;
+    display: left; 
+
+}
+ 
+/*Adjustments for Navigation items*/
+.nav ul {
+    background: #000;
+    width: 100%;
+    margin-top:10px;
+    font-family:'Bebas Neue', sans-serif;   
+    font-weight: bold;
+}
+
+/*Adjustments for individual Navigation items */
+.nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 20px 30px;
+    color: #fff;
+    font-family:'Bebas Neue', sans-serif;   
+    font-weight: bold;
+}
+
+/*Adjustment for the entirety of the Navigation Items*/
+.nav-links {
+    padding: 3px 0;
+    font-family:'Bebas Neue', sans-serif;   
+}
+
+/*Css properties for the links*/
+.nav-links li {              
+    display: inline-block;
+    font-size: 20px;
+    margin: 0 15px;
+    font-family:'Bebas Neue', sans-serif;   
+    /*border: 2px solid #00bfff;
+    border-radius: 8px;
+    padding: 5px;*/
+}
+         
+/*How will the links look*/
+.nav-links li a {                    
+    text-decoration: none;
+    color: rgb(127,63,152); /*Purple color but looks better with fuchsia #FF00FF or darkmagenta #8b008b*/
+    padding: 5px 0;
+    position: relative;
+    font-family:'Bebas Neue', sans-serif;   
+}
+    
+/*This allows the links to be underlined*/
+.nav-links li a::after {    			
+    content: '';
+    background: #8b008b;
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.5s;
+    font-family:'Bebas Neue', sans-serif;   
+    
+}
+
+/*This allows the link to be underline when hovered over*/
+.nav-links li a:hover::after { 		
+    width: 100%;
+    font-family:'Bebas Neue', sans-serif;   
+    font-weight: bold;
+}
+    
+ /* login In button*/ 
+.btns3 {                               
+    /*background: #1ca9c9; /*red*/
+    /*color: black;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 8px;*/
+    color: #8b008b;
+    cursor: pointer;
+    box-shadow:0 0px #999;
+    border: 2px solid #00bfff;
+    border-radius: 8px;
+    padding: 5px;
+    font-family:'Bebas Neue', sans-serif;   
+}
+
+.btn3:hover {                               
+    background-color: #00bfff;
+    font-family:'Bebas Neue', sans-serif;   
+}
+
+/*creates a little animation for login In button*/ 
+.btns3:active {                                  
+    background-color: #00bfff;
+    box-shadow: 0 0px #666;
+    transform: translateY(2px);
+    font-family:'Bebas Neue', sans-serif;   
+}
+
+/*sign in button*/ 
+.btns2 {                                     
+    /*background: #ff3d00; /*red*/
+    /*color: black;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow:0 0px #999;*/
+    color: #8b008b;
+    cursor: pointer;
+    box-shadow:0 0px #999;
+    border: 2px solid #00bfff;
+    border-radius: 8px;
+    padding: 5px;
+    font-family:'Bebas Neue', sans-serif;   
+}
+
+.btns2:hover {
+    background-color: #00bfff;
+    font-family:'Bebas Neue', sans-serif;   
+}
+
+/*creates a little animation for sign In button*/
+.btns2:active {                               
+    background-color: #ff3d00;
+    box-shadow: 0 0px #666;
+    transform: translateY(2px);
+    font-family:'Bebas Neue', sans-serif;   
+}
+
+
+
+
+/* Product Card CSS*/
+#productDiv{
+    font-family:'Bebas Neue', sans-serif;   
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+ .productcard{
+    font-family:'Bebas Neue', sans-serif;   
+    padding: 20px;
+    border:1px gray solid ;
+    height: 700px;
+    width: 350px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+ }
+ .productcard:hover{
+    border-color: darkblue;
+ }
+
+.donate .tooltiptext{
+    visibility: hidden;
+    width: 100px;
+    background-color:white;
+    text-align: center;
+    border-radius: 10px;
+    border:2px solid black;
+    padding: 4px 0;
+    position: absolute;
+    z-index: 1;
+    margin-left: 10px;
+    
+}
+
+.pickup .tooltiptext{
+    visibility: hidden;
+    width: 100px;
+    background-color:white;
+    text-align: center;
+    border-radius: 10px;
+    border:2px solid black;
+    padding: 4px 0;
+    position: absolute;
+    z-index: 1;
+    margin-left: 10px;
+    
+}
+
+.donate:hover .tooltiptext{
+    color:black;
+    visibility: visible;
+}
+
+.pickup:hover .tooltiptext{
+    color:black;
+    visibility: visible;
+}
+
+.imgs{
+width: 220px;
+height: 160px;
+cursor: pointer;
+}
+
+
+.name{
+    margin-top: 10px;
+    color: purple;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+
+.img{
+    margin-top: 20px;
+    width: 80%;
+    height: 80%;
+}
+.condition{
+    
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.price{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.donate{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.pickup{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+}
+.user{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+}
+
+
+
+
+.btns{
+    margin-top: 20px;
+    background-color: purple;
+    color: white;
+    width: 90%;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.btns:hover{
+    font-size: 1.5em;
+    color: wheat;
+}
+
+/*Footer*/
+.footer {
+    position: relative;
+    width: 100%;
+    background: RGB(127,63,152); /*RGB(127,63,152); #00bfff;*/
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .social-icon,
+  .menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 7px 0;
+    flex-wrap: wrap;
+  }
+  
+  .social-icon__item,
+  .menu__item {
+    list-style: none;
+  }
+  
+  .social-icon__link {
+    font-size: 2rem;
+    color: #fff; 
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+  }
+  .social-icon__link:hover {
+    transform: translateY(-10px);
+  }
+  
+  .menu__link {
+    font-size: 1.3rem;
+    color: #fff; /*RGB(127,63,152);*/
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+  }
+  
+  .menu__link:hover {
+    opacity: 1;
+  }
+  
+  .footer p {
+    color: #fff;
+    margin: 5px 0 10px 0;
+    font-size: 1rem;
+    font-weight: 300;
+  }
