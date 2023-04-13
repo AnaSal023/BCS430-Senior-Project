@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>    
+<head>
+    <!--Page Tittle-->
+        <title> Uni-Thirft</title>  
+    
+    <!--Connects to the css file-->
+        <link href = "accountMng.css" rel ="stylesheet" type = "text/css">   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+
+    <div class="header">        
+     <!-- Navigation Bar-->
+        <nav>
+        <!-- This is our logo picture-->
+            <a href ="indexLogin.html"><img  src="LOGO_BCS430W.png" class="logo"></a> 
+            
+                <!-- Navigation Bar Items-->
+        <ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="indexLogin.html" font-family="'Bebas Neue', sans-serif"  >Home</a></li>                
+                    <li><a href="productsLogin.html">Products</a></li> 
+                    <li><a href="aboutLogin.html">About</a></li> 
+                    <li><a href="accountMng.html">My Account</a></li>
+                    <li class= "btn1"><a href="logout.html"><span>Logout</span></a></li>
+                    <li><a href="shoppingcartLogin.html">Shopping Cart <span id = "countOfItems" class="num-of-items">0</span></a></li>                     
+                </ul>          
+        </nav>
+    </div>
+<div class="container">     
+    <!--Account Management option such as personal information, payment, orders, selling items-->
+    <div class="topbox">
+        <nav>
+            <ul class="nav-link">                                  
+                <li><a class="fa fa-user-circle" aria-hidden="true" title="User Demographics"  href="accountMng.html"></a></li>
+                <li><a class="fa fa-credit-card" aria-hidden="true" title="Payment" href="payment.html"></a></li>                
+                <li><a class="fa fa-shopping-basket" aria-hidden="true" title="Purchase History" href="orderHistory.html"></a></li> 
+                <li><a class="fa fa-tags" aria-hidden="true" title="Items Being Sold" href="uploadedItems.html"></a></li> 
+                <li><a class="fa fa-history" aria-hidden="true" title="Items Sold" href="soldItems.html"></a></li>                                          
+            </ul>    
+        </nav>
+    </div>
+
+    <!--Information on the bottom side of the screen(body) for profile-->
+    <div class="lowerbox">
+
+    <!--For the profile information-->
+    <div class="profile tabShow">
+
+        <div id="displayData">
+            <h1>Personal Information</h1>
+            <p>First Name: <span id="firstName"></span></p>
+            <p>Last Name: <span id="lastName"></span></p>
+            <p>Date of Birth: <span id="birthday"></span></p>
+            <p>Gender: <span id="gender"></span></p>
+            <p>Email: <span id="email"></span></p>
+          </div>
+          
+    
+        
+        <h1> Please Insert your information </h1>
+        <h2> First Name </h2>
+        <input id ="enterFirstName" type="text" placeholder="Enter First Name">
+        <h2> Last Name </h2>
+        <input id ="enterLastName" type="text" placeholder="Enter Last Name"> 
+        <h2> Date of Birth</h2>
+        <input id="enterBirthday" type="text" placeholder="Enter Date of Birth"> 
+        <h2> Gender </h2>
+        <input id="enterGender" type="text" placeholder="Enter Gender">
+        <h2> Email </h2>
+        <input id="enterEmail" type="email" placeholder="Enter Email" > .edu <br>
+
+        <button id ="insert">Insert/Update</button>
+    
+    </div>
+    </div>
+
+  
+</div>
+
+<!--This top section is copied and pasted from our firebase page. -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+    // Your web app's Firebase configuration
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+  authDomain: "uni-thrift.firebaseapp.com",
+  databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+  projectId: "uni-thrift",
+  storageBucket: "uni-thrift.appspot.com",
+  messagingSenderId: "562171645836",
+  appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+};
+  
+    // Initialize Firebase
+    
+    //this is needed to pull and save the data
+    import {getDatabase, ref, get, set, child, update, remove, push, onValue}
+        from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"; //
+ //The link aboved is copied here but the word app is replaced with database
+
+        const app = initializeApp(firebaseConfig);
+const db = getDatabase();
+       
+window.onload = function() {
+  const enterFirstName = document.querySelector("#enterFirstName");
+  const enterLastName = document.querySelector("#enterLastName");
+  const enterBirthday = document.querySelector("#enterBirthday");
+  const enterGender = document.querySelector("#enterGender");
+  const enterEmail = document.querySelector("#enterEmail");
+  const insertBtn = document.querySelector("#insert");
+
+  insertBtn.addEventListener("click", insertData);
+
+  const displayDataDiv = document.querySelector("#displayData");
+
+  // Retrieve data from local storage if available
+  const cachedData = JSON.parse(localStorage.getItem("userData"));
+  if (cachedData) {
+    displayData(cachedData);
+  }
+
+  function insertData() {
+    deleteUserData();
+
+    const firstName = enterFirstName.value;
+    const lastName = enterLastName.value;
+    const birthday = enterBirthday.value;
+    const gender = enterGender.value;
+    const email = enterEmail.value;
+
+    // Insert/update data in Firebase using update() function
+    update(ref(db, 'User/' + email), {
+      FirstName: firstName,
+      LastName: lastName,
+      Birthday: birthday,
+      Gender: gender,
+      Email: email
+    })
+    .then(() => {
+      alert('Data updated successfully');
+      const userData = {FirstName: firstName, LastName: lastName, Birthday: birthday, Gender: gender, Email: email};
+      localStorage.setItem("userData", JSON.stringify(userData));
+      displayData(userData);
+    })
+    .catch((error) => {
+      alert(error);
+    });
+  }
+  function displayData(data) {
+    const firstName = data.FirstName;
+    const lastName = data.LastName;
+    const birthday = data.Birthday;
+    const gender = data.Gender;
+    const email = data.Email;
+
+    document.querySelector("#firstName").innerHTML = firstName;
+    document.querySelector("#lastName").innerHTML = lastName;
+    document.querySelector("#birthday").innerHTML = birthday;
+    document.querySelector("#gender").innerHTML = gender;
+    document.querySelector("#email").innerHTML = email;
+
+    displayDataDiv.style.display = "block";
+  }
+
+  function deleteUserData() {
+    const userRef = ref(db, "User/");
+    remove(userRef)
+      .then(() => {
+        console.log("All user data deleted successfully");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+};
+
+
+
+
+</script>
+
+
+
+
+<!--Footer starts-->
+ <footer class="footer">
+
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+      
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="indexLogin.html">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="productsLogin.html">Products</a></li>
+      <li class="menu__item"><a class="menu__link" href="FAQLogin.html">FAQ</a></li>
+      <li class="menu__item"><a class="menu__link" href="contactSellerLogin.html">Contact Seller</a></li>
+
+    </ul>
+    <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+  </footer>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  <!--function below will make it where only information pertaining to each tab shows such as demographic icon will show name, address, etc but will not show payment information-->
+  <script>
+    const tabBtn = document.querySelectorAll(".tab");
+    const tab = document.querySelectorAll(".tabShow");
+    
+    function tabs(panelIndex){
+        tab.forEach(function(node){
+            node.style.display = "none";
+            
+        });
+        tab[panelIndex].style.display = "block";
+    }
+    tabs(0);
+
+  </script>
+  <!--Footer ends-->
+  
+</body>
+</html>
+
+
