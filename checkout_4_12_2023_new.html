@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+	<link rel="stylesheet" href="checkoutStyles.css">
+	<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+	</head>
+	<title>Check Out</title>
+	<!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="indexLogin.html"><img  src="LOGO_BCS430W.png" class="logo"></a> 
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="indexLogin.html">Home</a></li>                
+                    <li><a href="productsLogin.html">Products</a></li> 
+                    <li><a href="aboutLogin.html">About</a></li> 
+                    <li><a href="accountMng.html">My Account</a></li>
+                     <li class= "btn1"><a href="logout.html"><span>Logout</span></a></li>
+                    <li><a href="shoppingcartLogin.html">Shopping Cart <span id = "countOfItems" class="num-of-items">0</span></a></li>        
+                </ul>          
+        </nav>
+	<body>
+        <!-- checkout form -->
+        <br><div class='checkoutForm' display='block'>
+            <label></label>
+            <div>
+            <img src="logo.png" class="logo3"></h1>
+            </div>
+            <div data-role='fieldcontain'>
+              <label></label>
+              <p id="please">Please enter your payment and shipping information</p>
+            </div><br>
+            <table id="items-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Item</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <br>
+            <div data-role='fieldcontain'>
+                <label>Name on Card</label><br><br>
+                <input type='text' maxlength='64'>
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Card Number</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Card Expiration Date</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>CVC</label><br><br>
+                <input type='text' maxlength='4' >
+              </div><br><br><br>
+              <div data-role='fieldcontain'>
+                <div data-role='fieldcontain'>
+                  <label></label>
+                  <button id="button" onclick="hideField()" class="button">Pick Up</button>
+                </div> <br>
+                <h1 class="ship" id="ship">Shipping Address</h1>
+              </div>
+              <div data-role='fieldcontain' class='ship' id="name">
+                <label>Name</label><br><br>
+                <input type='text' maxlength='64'  >
+              </div><br>
+              <div data-role='fieldcontain' class='ship' id="street">
+                <label>Street Address</label><br><br>
+                <input type='text' maxlength='64' id="street">
+              </div><br>
+              <div data-role='fieldcontain' class='ship' id="city">
+                <label>City</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'class='ship' id="state">
+                <label>State</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain' class='ship' id="zip">
+                <label>Postal / Zip Code</label><br><br>
+                <input type='text' maxlength='10' >
+              </div><br><br>
+            <div data-role='fieldcontain'>
+              <label></label>
+              <button id="checkout" class="button">&ensp;Check Out&ensp;</button>
+            </div>
+            
+        </div><br><br>
+    <!-- javascript -->
+    
+    <script>
+      const btn = document.getElementById('button');
+      const name = document.getElementById('name');
+      const street = document.getElementById('street');
+      const city = document.getElementById('city');
+      const state = document.getElementById('state');
+      const zip = document.getElementById('zip');
+      const ship = document.getElementById('ship');
+      const text = document.getElementById('please');
+      function  hideField() {
+        ship.classList.toggle('active'); 
+        name.classList.toggle('active'); 
+        street.classList.toggle('active'); 
+        city.classList.toggle('active'); 
+        state.classList.toggle('active'); 
+        zip.classList.toggle('active'); 
+        if (btn.innerHTML == 'Pick Up' && text.innerHTML == 'Please enter your payment and shipping information'){
+          btn.innerHTML = 'Shipping';
+          text.innerHTML = 'Please enter your payment information';
+        }
+        else {
+          btn.innerHTML = 'Pick Up';
+          text.innerHTML = 'Please enter your payment and shipping information';
+        }
+      }
+    
+    </script>
+    <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, connectAuthEmulator } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js';
+        import{getDatabase, ref, child, remove, onValue, get, set, push} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+            authDomain: "uni-thrift.firebaseapp.com",
+            databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+            projectId: "uni-thrift",
+            storageBucket: "uni-thrift.appspot.com",
+            messagingSenderId: "562171645836",
+            appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+        };
+        //initialize firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+        const auth = getAuth(firebaseApp);
+        const checkAuth = async() => {
+            onAuthStateChanged(auth, user => {
+            if(user){
+
+            }
+            else {
+                window.location.href="login.html";
+            }
+            })
+        }
+
+        const realdb = getDatabase(); 
+        const cartItemsRef = ref(realdb, "Cart_Items");
+
+        //Update countOfItems
+        onValue(cartItemsRef, (snapshot) => {
+            const numItems = Object.keys(snapshot.val() || {}).length;
+
+            const countOfItems = document.getElementById("countOfItems");
+            countOfItems.textContent = numItems;
+        });
+
+        //Code to insert for pick-up only items checkout page
+        const itemsRef = ref(realdb, 'Cart_Items');
+        onValue(itemsRef, (snapshot) => {
+          const tableBody = document.querySelector('#items-table tbody');
+          tableBody.innerHTML = '';
+
+          const items = Object.entries(snapshot.val() || {})
+            .map(([key, item]) => ({ key, ...item }))
+            .filter((item) => (item.Pickup === 'Yes' || (item.Donate === 'Yes' && item.Pickup === 'Yes')));
+
+          items.forEach((item) => {
+            const row = tableBody.insertRow(-1);
+            const imageCell = row.insertCell(0);
+            const nameCell = row.insertCell(1);
+            const priceCell = row.insertCell(2);
+            imageCell.innerHTML = `<img src="${item.Image}" alt="${item.Item}">`;
+            nameCell.textContent = item.Item;
+            priceCell.textContent = `$${item.Price}`;
+            if (item.Price == 'undefined'){
+              priceCell.textContent = '$' + 0;
+            }
+          });
+        });
+
+        //Code to insert for shipping items checkout page
+        const itemsRef = ref(realdb, 'Cart_Items');
+        onValue(itemsRef, (snapshot) => {
+          const tableBody = document.querySelector('#items-table tbody');
+          tableBody.innerHTML = '';
+
+          const items = Object.entries(snapshot.val() || {})
+            .map(([key, item]) => ({ key, ...item }))
+            .filter((item) => ((item.Donate === 'Yes' && item.Pickup === 'No') || (item.Donate === 'No' && item.Pickup === 'No')));
+
+          items.forEach((item) => {
+            const row = tableBody.insertRow(-1);
+            const imageCell = row.insertCell(0);
+            const nameCell = row.insertCell(1);
+            const priceCell = row.insertCell(2);
+            imageCell.innerHTML = `<img src="${item.Image}" alt="${item.Item}">`;
+            nameCell.textContent = item.Item;
+            priceCell.textContent = `$${item.Price}`;
+            if (item.Price == 'undefined'){
+              priceCell.textContent = '$' + 0;
+            }
+          });
+        });
+
+        //Section of code to add
+        //**************************************************************************************
+        function AddtoSoldHistory() {
+          const itemsTable = document.getElementById("items-table");
+          const rows = itemsTable.getElementsByTagName("tr");
+          const items = [];
+
+          for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName("td");
+            const item = {
+              Product_Img_Url: cells[0].getElementsByTagName("img")[0].src,
+              productName: cells[1].textContent,
+              price: cells[2].textContent,
+            };
+            items.push(item);
+          }
+
+          const soldHistoryRef = ref(realdb, "soldHistory");
+          items.forEach((item) => {
+            push(soldHistoryRef, item);
+          });
+      }
+
+      function deleteItemFromProducts() {
+        const itemsTable = document.getElementById('items-table');
+        const rows = itemsTable.rows;
+        const dbRef = ref(realdb, 'Products');
+        const testDbRef = ref(realdb, 'test');
+
+        for (let i = 1; i < rows.length; i++) {
+          const productName = rows[i].cells[1].textContent.trim();
+          const itemRef = child(dbRef, productName);
+          const testItemRef = child(testDbRef, productName);
+          remove(itemRef).then(() => {
+            console.log(`Item '${productName}' deleted from Products`);
+          }).catch((error) => {
+            console.error(`Error deleting item '${productName}' from Products: `, error);
+          });
+
+          remove(testItemRef).then(() => {
+            console.log(`Item '${productName}' deleted from Products`);
+          }).catch((error) => {
+            console.error(`Error deleting item '${productName}' from Products: `, error);
+          });
+        }
+      }
+
+      function deleteItemFromCart(){
+       
+      }
+
+      const checkoutBtn = document.getElementById('checkout');
+      checkoutBtn.addEventListener('click', function(){
+        AddtoSoldHistory();
+        deleteItemFromProducts();
+      });
+      //**************************************************************************************
+
+      </script> 
+      <footer class="footer">
+
+        <ul class="social-icon">
+          <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
+        </ul>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="indexLogin.html">Home</a></li>
+          <li class="menu__item"><a class="menu__link" href="productsLogin.html">Products</a></li>
+          <li class="menu__item"><a class="menu__link" href="FAQLogin.html">FAQ</a></li>
+          <li class="menu__item"><a class="menu__link" href="contactSellerLogin.html">Contact Seller</a></li>
+    
+        </ul>
+        <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+      </footer>
+
+
+     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
+    </html>
