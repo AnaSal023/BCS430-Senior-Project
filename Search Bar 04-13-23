@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Products</title>
+  </head>
+  <body>
+    <form id="search-form">
+      <input type="text" name="search" placeholder="Search products...">
+      <button type="submit">Search</button>
+    </form>
+
+    <ul id="product-list"></ul>
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+
+<script>
+    //Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+      authDomain: "uni-thrift.firebaseapp.com",
+      databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+      projectId: "uni-thrift",
+      storageBucket: "uni-thrift.appspot.com",
+      messagingSenderId: "562171645836",
+      appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+
+
+document.getElementById("search-form").addEventListener("submit", function(event) {
+  event.preventDefault(); 
+  var searchQuery = document.getElementsByName("search")[0].value;
+
+  if (searchQuery === "") {
+
+  var productList = document.getElementById("product-list");
+  productList.innerHTML = "<li>Please enter a search query.</li>";
+} else {
+
+  var productsRef = firebase.database().ref("Products");
+  
+  productsRef.orderByChild("ProductTitle").startAt(searchQuery).endAt(searchQuery + "\uf8ff").on("value", function(snapshot) {
+
+
+    
+    if (snapshot.exists()) {
+      
+      var productList = document.getElementById("product-list");
+      productList.innerHTML = ""; 
+   
+
+snapshot.forEach(function(childSnapshot) {
+  // Get the product data
+  var productData = childSnapshot.val();
+
+  console.log("searchQuery:", searchQuery);
+
+  console.log("productData.ProductTitle:", productData.ProductTitle);
+
+  // Create a new list item element
+  var li = document.createElement("li");
+
+
+  var a = document.createElement("a");
+  a.href = "product.html?id=" + childSnapshot.key; 
+  a.textContent = productData.ProductTitle; 
+
+  
+  li.appendChild(a);
+
+  productList.appendChild(li);
+
+});
+          } else {
+            // Display a message indicating that no search results were found
+            var productList = document.getElementById("product-list");
+            productList.innerHTML = "<li>No search results found.</li>";
+          }
+        
+        });
+    };
+});
+
+   
+    </script>
+  </body>
+</html>
+
+
