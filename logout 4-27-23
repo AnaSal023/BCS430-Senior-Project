@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+	<link rel="stylesheet" href="logoutStyles.css">
+	<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+	</head>
+	<title>Log Out</title>
+	<!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="indexLogin.html"><img  src="LOGO_BCS430W.png" class="logo"></a> 
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="indexLogin.html">Home</a></li>                
+                    <li><a href="productsLogin.html">Products</a></li> 
+                    <li><a href="aboutLogin.html">About</a></li> 
+                    <li><a href="accountMng.html">My Account</a></li>
+                    <li class= "btn1"><a href="logout.html"><span>Logout</span></a></li>
+                    <li><a href="shoppingcartLogin.html">Shopping Cart <span id = "countOfItems" class="num-of-items">0</span></a></li> 
+                </ul>          
+        </nav>
+	<body>
+<!-- sign out form -->
+<br><div class='signOutForm' id='signOutForm' display='block'>
+    <label></label>
+    <div>
+    <img src="logo.png" class="logo3"></h1>
+    </div>
+    <div data-role='fieldcontain'>
+      <label></label>
+      <p>Your are sign in
+    </div><br>
+    <p>
+        Please press the sign out button if you want to log out
+    </p><br>
+    <div data-role='fieldcontain'>
+      <label></label>
+      <button id="signout" class="button">&ensp;Sign Out&ensp;</button>
+    </div>
+</div>
+</div>
+
+<!-- javascript -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import{getDatabase,ref,child,onValue,get,set, remove} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+      apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+      authDomain: "uni-thrift.firebaseapp.com",
+      databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+      projectId: "uni-thrift",
+      storageBucket: "uni-thrift.appspot.com",
+      messagingSenderId: "562171645836",
+      appId: "1:562171645836:web:ded9a93970d0631ab4d0a9"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+  
+    const realdb = getDatabase(); 
+    const cartItemsRef = ref(realdb, "Cart_Items");
+
+const signOutBtn = document.querySelector('#signout');
+const signOutForm = document.querySelector('#signOutForm');
+//signs user out
+			const userSignOut = async() => {
+        const itemsRef = ref(realdb, 'Cart_Items');
+        const orderRef = ref(realdb, 'Orders');
+        const soldRef = ref(realdb, 'soldHistory');
+        const testRef = ref(realdb, 'test');
+
+        remove(soldRef).then(() => {
+          
+        }).catch((error) => {
+          console.log(error);
+        });
+
+        remove(testRef).then(() => {
+          
+        }).catch((error) => {
+          console.log(error);
+        });
+
+  			remove(itemsRef).then(() => {
+           
+    			
+  			}).then(remove(orderRef).then(() => {
+          
+          
+        }
+        )).catch((error) => {
+    			console.log(error);
+  			});
+                alert('You are being logout!');
+                localStorage.clear();
+                window.location.href="index.html";
+
+			}
+			//when button is press user is sign up
+			signOutBtn.addEventListener('click', userSignOut);
+
+   
+		</script>
+        <footer class="footer">
+          <ul class="social-icon">
+            <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a></li>
+          </ul>
+            <ul class="menu">
+              <li class="menu__item"><a class="menu__link" href="indexLogin.html">Home</a></li>
+              <li class="menu__item"><a class="menu__link" href="productsLogin.html">Products</a></li>
+              <li class="menu__item"><a class="menu__link" href="FAQLogin.html">FAQ</a></li>
+              <li class="menu__item"><a class="menu__link" href="contactSellerLogin.html">Contact Seller</a></li>
+
+            </ul>
+            <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+          </footer>
+         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	</body>
+	</html>
