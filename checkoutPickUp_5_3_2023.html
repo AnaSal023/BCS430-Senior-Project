@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+	<link rel="stylesheet" href="checkoutStyles.css">
+	<link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
+	</head>
+	<title>Check Out</title>
+	<!-- Navigation Bar-->
+        <nav>
+		<!-- This is our logo picture-->
+            <a href ="indexLogin.html"><img  src="LOGO_BCS430W.png" class="logo"></a> 
+            
+                <!-- Navigation Bar Items-->
+		<ul class="nav-links">                    
+                    <!--All the header tabs-->
+                    <li><a href="indexLogin.html">Home</a></li>                
+                    <li><a href="productsLogin.html">Products</a></li> 
+                    <li><a href="aboutLogin.html">About</a></li> 
+                    <li><a href="accountMng.html">My Account</a></li>
+                     <li class= "btn1"><a href="logout.html"><span>Logout</span></a></li>
+                    <li><a href="shoppingcartLogin.html">Shopping Cart <span id = "countOfItems" class="num-of-items">0</span></a></li>        
+                </ul>          
+        </nav>
+	<body>
+        <!-- checkout form -->
+        <br><div class='checkoutForm' display='block'>
+            <label></label>
+            <div>
+            <img src="logo.png" class="logo3"></h1>
+            </div>
+            <div data-role='fieldcontain'>
+              
+              <h1>Your shopping items</h1>
+              <br>
+            <table id="items-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Item</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+            <br>
+              <h1 id="please">Please enter your payment if applicable</h1>
+            </div><br>
+            <div data-role='fieldcontain'>
+                <label>Name on Card</label><br><br>
+                <input type='text' maxlength='64'>
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Card Number</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>Card Expiration Date</label><br><br>
+                <input type='text' maxlength='64' >
+              </div><br>
+              <div data-role='fieldcontain'>
+                <label>CVC</label><br><br>
+                <input type='text' maxlength='4' >
+              </div><br><br><br>
+                <div data-role='fieldcontain'>
+                  <label></label>
+                 
+              <button id="checkoutBtn" class="button">&ensp;Check Out&ensp;</button>
+            </div>
+           
+        </div><br><br>
+    <!-- javascript -->
+    <script type="module">
+      const btn = document.getElementById('button');
+      const name = document.getElementById('name');
+      const street = document.getElementById('street');
+      const city = document.getElementById('city');
+      const state = document.getElementById('state');
+      const zip = document.getElementById('zip');
+      const ship = document.getElementById('ship');
+      const text = document.getElementById('please');
+      const checkoutBtn = document.getElementById("checkoutBtn");
+      function  hideField() {
+        ship.classList.toggle('active'); 
+        name.classList.toggle('active'); 
+        street.classList.toggle('active'); 
+        city.classList.toggle('active'); 
+        state.classList.toggle('active'); 
+        zip.classList.toggle('active'); 
+        if (btn.innerHTML == 'Pick Up' && text.innerHTML == 'Please enter your payment and shipping information'){
+          btn.innerHTML = 'Shipping';
+          text.innerHTML = 'Please enter your payment information';
+        }
+        else {
+          btn.innerHTML = 'Pick Up';
+          text.innerHTML = 'Please enter your payment and shipping information';
+        }
+      }
+      
+    
+    
+      
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
+        import{getDatabase,ref,child,onValue,get,push,set,remove} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCboO05ASTNAeFOWdUARGE7MZYj7ZzxcEs",
+            authDomain: "uni-thrift.firebaseapp.com",
+            databaseURL: "https://uni-thrift-default-rtdb.firebaseio.com",
+            projectId: "uni-thrift",
+            storageBucket: "uni-thrift.appspot.com",
+            messagingSenderId: "562171645836",
+            appId: "1:562171645836:web:6c89d0a08fb9c35ab4d0a9"
+        };
+        //initialize firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+        
+        
+          const realdb = getDatabase(); 
+          const cartItemsRef = ref(realdb, "Cart_Items");
+
+          function AddShippingItems(image, product, price){
+            let trow = document.createElement("tr");
+            trow.setAttribute("id", "data-key");
+            let td1 = document.createElement('td');
+            let td2 = document.createElement('td');
+            let td3 = document.createElement('td');
+
+            let img = document.createElement('img');
+            img.src = image;
+            img.width = 100;
+            td1.appendChild(img);
+            trow.appendChild(td1);
+            td2.innerHTML = product;
+            td3.innerHTML = price;
+
+            
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+
+            document.getElementById('tbody').appendChild(trow);
+
+          }
+
+          function AddAllItems(cartItems){
+            
+            cartItems.forEach(element => {
+              if (element.Pickup == 'Yes') {
+					if(element.Price == 'undefined'){
+						AddShippingItems(element.Image, element.Item, "$ 0.00");
+					}else{
+						AddShippingItems(element.Image, element.Item, "$" + element.Price);
+					}
+				}
+            
+          });
+				}
+          function GetAllDataOnce(){
+			      const dbRef = ref(realdb);    
+            get(child(dbRef, "Cart_Items"))
+            .then((snapshot)=>{
+              var items = [];
+              
+              snapshot.forEach(childSnapshot => {
+                items.push(childSnapshot.val());
+                
+              }); 
+            
+				    AddAllItems(items);
+          }); }
+          function removePickUpItems(){
+           
+            const dbRef = ref(realdb);    
+            get(child(dbRef, "Cart_Items"))
+            .then((snapshot)=>{
+              var items = [];
+              
+              snapshot.forEach(childSnapshot => {
+                items.push(childSnapshot.val());
+                
+              }); 
+          removeItems(items); 
+            });
+
+          }
+        function removeItems(items){
+          items.forEach(element => {
+            if (element.Pickup == 'Yes'){
+              itemsRef.child(element).remove();
+            }
+            
+          });
+        }
+
+        function AddtoSoldHistory() {
+          const itemsTable = document.getElementById("items-table");
+          const rows = itemsTable.getElementsByTagName("tr");
+          const items = [];
+
+          for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName("td");
+            const item = {
+              Product_Img_Url: cells[0].getElementsByTagName("img")[0].src,
+              productName: cells[1].textContent,
+              price: cells[2].textContent,
+            };
+            items.push(item);
+          }
+
+          const soldHistoryRef = ref(realdb, "soldHistory");
+          items.forEach((item) => {
+            push(soldHistoryRef, item);
+          });
+        } 
+
+        function deleteItemFromProducts(){
+          const itemsTable = document.getElementById("items-table");
+          const tbody = itemsTable.querySelector("tbody");
+          
+          tbody.querySelectorAll("tr").forEach(row => {
+            const item = row.cells[1].textContent.trim();
+            const newItem = item.replace(/[^a-zA-Z0-9]/g, '');
+
+            const productsRef = ref(realdb, "Products/" + newItem);
+            remove(productsRef);
+
+            const testRef = ref(realdb, "test/" + newItem);
+            remove(testRef);
+          });
+        }
+
+        function deleteItemFromCart(itemNames){
+          const cartRef = ref(realdb, 'Cart_Items');
+
+          //This retrieves the current items in the cart
+          get(cartRef).then((snapshot) => {
+            const cartItems = snapshot.val();
+            const cartItemKeys = Object.keys(cartItems || {});
+
+            //This delete any items that match the names within the array
+            cartItemKeys.forEach((key) => {
+              const cartItem = cartItems[key];
+              if (itemNames.includes(cartItem.Item)) {
+                remove(child(cartRef, key));
+              }
+            });
+          });
+        }
+
+        function checkout() {
+          const dbRef = ref(realdb);    
+          get(child(dbRef, "Cart_Items"))
+            .then((snapshot)=>{
+              var items = [];
+              
+              snapshot.forEach(childSnapshot => {
+                items.push(childSnapshot.val());
+              });
+
+            addItemToOrders(items); 
+            });
+
+          AddtoSoldHistory();
+          deleteItemFromProducts();
+
+          const itemNames = [];
+          
+          //This iterates over the rows in the table and retrieves the item names listed
+          const rows = document.querySelectorAll('#items-table tbody tr');
+          rows.forEach((row) => {
+            const itemName = row.querySelector('td:nth-child(2)').textContent.trim();
+            itemNames.push(itemName);
+          });
+
+          deleteItemFromCart(itemNames);
+        }
+
+          function addItemToOrders(items) {
+          items.forEach(element => {
+            if (element.Pickup == 'Yes'){
+              if(element.Price == 'undefined'){
+                addItemToOrdersTable(element.Image, element.Item, "$ 0.00");
+              }else{
+                addItemToOrdersTable(element.Image, element.Item, "$" + element.Price);
+              } 
+            }
+            
+          });
+        
+      }
+      function addItemToOrdersTable(image, item, price) {
+        
+        const orderItem = {                    
+        Image: image,
+        Item: item,
+        Price: price
+        };
+        const orderItemsRef = push(child(ref(realdb), 'Orders'));             
+                    set(orderItemsRef, orderItem);
+      }
+    
+
+        onValue(cartItemsRef, (snapshot) => {
+            const numItems = Object.keys(snapshot.val() || {}).length;
+
+            const countOfItems = document.getElementById("countOfItems");
+            countOfItems.textContent = numItems;
+        });
+
+       
+      window.onload = GetAllDataOnce;
+      checkoutBtn.addEventListener('click', function() {
+        checkout();
+        alert('Thank you for your purchase! Please go to "My Account" to view your order history.');
+      });
+      
+      </script> 
+      <div class="page-container">
+      <footer class="footer">
+
+        <ul class="social-icon">
+          <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/uni.thrift.1/">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
+        </ul>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="indexLogin.html">Home</a></li>
+          <li class="menu__item"><a class="menu__link" href="productsLogin.html">Products</a></li>
+          <li class="menu__item"><a class="menu__link" href="FAQLogin.html">FAQ</a></li>
+          <li class="menu__item"><a class="menu__link" href="contactSellerLogin.html">Contact Seller</a></li>
+    
+        </ul>
+        <p>&copy;2023 Uni-Thrift | All Rights Reserved</p>
+      </footer>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
+    </html>
